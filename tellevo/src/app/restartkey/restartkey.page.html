@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      #TellevoAPP
+      Restaurar contraseña.
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,18 +17,23 @@
 
   <div class="content">
     <ion-card>
+      <ion-title>Ingrese la información solicitada.</ion-title>
       <ion-card-header>
-        <ion-button routerLink="" expand="block">CREAR VIAJE</ion-button>
-      </ion-card-header>
-      <ion-card-content>
-        Ingresa la planificación de tu viaje para que puedas transportar a tus compañeros.
-      </ion-card-content>
+        <ion-list>
+          <ion-list>
+            <ion-item>
+              <ion-input label="RUN:" placeholder="12345678-9"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Correo electrónico:" type="email" placeholder="ej: jperez@duocuc.cl"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-list>
 
-      <ion-card-header>
-        <ion-button routerLink="" expand="block">VER VIAJES</ion-button>
+        <ion-button routerLink="" expand="block">Enviar</ion-button>
       </ion-card-header>
       <ion-card-content>
-        Busca viajes disponibles para tu destino.
+        Le enviaremos un correo electrónico con los pasos a seguir para recuperar su contraseña.
       </ion-card-content>
     </ion-card>
   </div>

@@ -1,23 +1,48 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Inicio.
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-button class="boton" [routerLink]="['/menu']" block color="primary" type="submit" >
-    Registrar
-  </ion-button>
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">
+        #TeLlevoAPP
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="content">
+    <ion-card>
+      <ion-card-header>
+        <ion-button routerLink="/login" expand="block">Iniciar sesión</ion-button>
+      </ion-card-header>
+      <ion-card-content>
+        Ingresa con tu usuario y contraseña para usuarios ya registrados.
+      </ion-card-content>
+      <ion-card-header>
+        <ion-button routerLink="/restartkey" expand="block">Restaurar contraseña</ion-button>
+      </ion-card-header>
+      <ion-card-content>
+        Restaura tu contraseña con los datos que te van solicitaremos a continuación.
+      </ion-card-content>
+      <ion-card-header>
+        <ion-button routerLink="/newuser" expand="block">Registrar usuario</ion-button>
+      </ion-card-header>
+      <ion-card-content>
+        Registro de nuevos usurios en la aplicación. (Debe pertenecer a la institución DuocUc)
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <strong>Planifica, comparte y regresemos a casa juntos.</strong>
+    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a>
+    </p>
+  </ion-toolbar>
+</ion-footer>

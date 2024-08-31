@@ -15,6 +15,18 @@ const routes: Routes = [
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'restartkey',
+    loadChildren: () => import('./restartkey/restartkey.module').then( m => m.RestartkeyPageModule)
+  },
+  {
+    path: 'newuser',
+    loadChildren: () => import('./newuser/newuser.module').then( m => m.NewuserPageModule)
+  },
 ];
 
 @NgModule({
