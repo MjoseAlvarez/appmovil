@@ -1,68 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Registro de usuarios.
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        #TeLlevoAPP
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input [(ngModel)]="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Confirmar Contraseña</ion-label>
+        <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sede</ion-label>
+        <ion-select [(ngModel)]="selectedSede" placeholder="Selecciona tu sede">
+          <ion-select-option *ngFor="let sede of sedesRm" [value]="sede.id">{{ sede.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
-  <div class="content">
-    <ion-card>
-      <ion-title>Ingrese la información solicitada.</ion-title>
-      <ion-card-header>
-        <ion-list>
-          <ion-list>
-            <ion-item>
-              <ion-label>Sede</ion-label>
-              <ion-select [(ngModel)]="selectedSede" placeholder="Elige una sede">
-                <ion-select-option *ngFor="let sede of sedesRm" [value]="sede">
-                  {{ sede.nombre }}
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-input label="Nombre:" placeholder="ej: Cosito Cachupín"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input label="RUN:" placeholder="12345678-9"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input label="Correo electrónico:" type="email" placeholder="ej: jperez@duocuc.cl"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input label="Teléfono móvil:" type="tel" placeholder="ej: +56987654321"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input label="*Contraseña:" type="password" value="password"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input label="*Repetir contraseña:" type="password" value="password"></ion-input>
-            </ion-item>
-          </ion-list>
-        </ion-list>
-
-        <ion-button routerLink="" expand="block">Enviar</ion-button>
-      </ion-card-header>
-      <ion-card-content>
-        La contraseña debe contener 8 caracteres como mínimo (*)
-      </ion-card-content>
-    </ion-card>
-  </div>
+      <ion-button expand="full" (click)="registro()">Registrar</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-button routerLink="/menu" expand="full">Ir al Menú</ion-button>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
-    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a>
-    </p>
+    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
   </ion-toolbar>
 </ion-footer>

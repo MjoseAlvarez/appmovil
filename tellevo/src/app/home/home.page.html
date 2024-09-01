@@ -1,48 +1,35 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Inicio.
+      #EstudiantesDuocUc
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        #TeLlevoAPP
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Bienvenido a TeLlevoApp</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Botón para iniciar sesión -->
+      <ion-button routerLink="/login" expand="block">Iniciar sesión</ion-button>
+      <!-- Botón para registrar nuevo usuario -->
+      <ion-button routerLink="/newuser" expand="block">Registrar usuario</ion-button>
+      <!-- Botón para programar un viaje -->
+      <ion-button routerLink="/programaviaje" expand="block">Programar Viaje</ion-button>
+      <!-- Botón para unirse a un viaje -->
+      <ion-button routerLink="/unirseviaje" expand="block">Unirse a un Viaje</ion-button>
+    </ion-card-content>
+  </ion-card>
 
-  <div class="content">
-    <ion-card>
-      <ion-card-header>
-        <ion-button routerLink="/login" expand="block">Iniciar sesión</ion-button>
-      </ion-card-header>
-      <ion-card-content>
-        Ingresa con tu usuario y contraseña para usuarios ya registrados.
-      </ion-card-content>
-      <ion-card-header>
-        <ion-button routerLink="/restartkey" expand="block">Restaurar contraseña</ion-button>
-      </ion-card-header>
-      <ion-card-content>
-        Restaura tu contraseña con los datos que te van solicitaremos a continuación.
-      </ion-card-content>
-      <ion-card-header>
-        <ion-button routerLink="/newuser" expand="block">Registrar usuario</ion-button>
-      </ion-card-header>
-      <ion-card-content>
-        Registro de nuevos usurios en la aplicación. (Debe pertenecer a la institución DuocUc)
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <!-- Botón para ir al menú -->
+  <ion-button routerLink="/menu" expand="full" class="ion-margin-top">Ir al Menú</ion-button>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
-    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a>
-    </p>
+    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
   </ion-toolbar>
 </ion-footer>

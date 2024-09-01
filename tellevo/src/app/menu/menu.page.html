@@ -1,7 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
     <ion-title>
-      #TellevoAPP
+      #TeLlevoAPP
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -18,14 +21,16 @@
   <div class="content">
     <ion-card>
       <ion-card-header>
-        <ion-button routerLink="" expand="block">CREAR VIAJE</ion-button>
+        <!-- Botón para navegar a la página "Programar Viaje" -->
+        <ion-button routerLink="/programaviaje" expand="block">CREAR VIAJE</ion-button>
       </ion-card-header>
       <ion-card-content>
         Ingresa la planificación de tu viaje para que puedas transportar a tus compañeros.
       </ion-card-content>
 
       <ion-card-header>
-        <ion-button routerLink="" expand="block">VER VIAJES</ion-button>
+        <!-- Botón para navegar a la página "Unirse a un Viaje" -->
+        <ion-button routerLink="/unirseviaje" expand="block">VER VIAJES</ion-button>
       </ion-card-header>
       <ion-card-content>
         Busca viajes disponibles para tu destino.
@@ -37,7 +42,6 @@
 <ion-footer>
   <ion-toolbar>
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
-    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a>
-    </p>
+    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
   </ion-toolbar>
 </ion-footer>
