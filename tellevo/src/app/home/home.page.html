@@ -1,31 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      #EstudiantesDuocUc
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding background-image">
+  <img src="/assets/icon/imagen.jpeg" alt="Fondo" />
+  <div id="container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Bienvenido a TeLlevoApp</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button routerLink="/login" expand="block" color="light">Iniciar sesión</ion-button>
+        <ion-button routerLink="/newuser" expand="block" color="light">Registrar usuario</ion-button>
+        <ion-button routerLink="/programaviaje" expand="block" color="light">Programar Viaje</ion-button>
+        <ion-button routerLink="/unirseviaje" expand="block" color="light">Unirse a un Viaje</ion-button>
+      </ion-card-content>
+    </ion-card>
 
-<ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Bienvenido a TeLlevoApp</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <!-- Botón para iniciar sesión -->
-      <ion-button routerLink="/login" expand="block">Iniciar sesión</ion-button>
-      <!-- Botón para registrar nuevo usuario -->
-      <ion-button routerLink="/newuser" expand="block">Registrar usuario</ion-button>
-      <!-- Botón para programar un viaje -->
-      <ion-button routerLink="/programaviaje" expand="block">Programar Viaje</ion-button>
-      <!-- Botón para unirse a un viaje -->
-      <ion-button routerLink="/unirseviaje" expand="block">Unirse a un Viaje</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Botón para ir al menú -->
-  <ion-button routerLink="/menu" expand="full" class="ion-margin-top">Ir al Menú</ion-button>
+    <ion-button routerLink="/menu" expand="full" class="ion-margin-top" color="light">Ir al Menú</ion-button>
+  </div>
 </ion-content>
+
 
 <ion-footer>
   <ion-toolbar>
