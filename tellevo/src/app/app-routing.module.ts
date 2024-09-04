@@ -9,10 +9,18 @@ const routes: Routes = [
   { path: 'unirseviaje', loadChildren: () => import('./unirseviaje/unirseviaje.module').then(m => m.UnirseviajePageModule) },
   { path: 'menu', loadChildren: () => import('./menu/menu.module').then(m => m.MenuPageModule) },
   { path: 'newuser', loadChildren: () => import('./newuser/newuser.module').then(m => m.NewuserPageModule) },
+  {
+    path: 'restkey',
+    loadChildren: () => import('./restkey/restkey.module').then(m => m.RestkeyPageModule)
+  },
+  {
+    path: 'userlog',
+    loadChildren: () => import('./userlog/userlog.module').then( m => m.UserlogPageModule)
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

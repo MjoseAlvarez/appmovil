@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RestartkeyPageRoutingModule } from './restartkey-routing.module';
+import { UserlogPageRoutingModule } from './userlog-routing.module';
 
-import { RestartkeyPage } from './restartkey.page';
+import { UserlogPage } from './userlog.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RestartkeyPageRoutingModule
+    UserlogPageRoutingModule
   ],
-  declarations: [RestartkeyPage]
+  declarations: [UserlogPage]
 })
-export class RestartkeyPageModule {}
+export class UserlogPageModule {}

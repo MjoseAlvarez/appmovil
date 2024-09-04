@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class LoginPage {
   email: string = '';
   password: string = '';
+  navController: any;
 
   constructor() {}
 
@@ -27,6 +28,7 @@ export class LoginPage {
     const usuarioRegistrado = JSON.parse(localStorage.getItem('user') || '{}');
     if (usuarioRegistrado.email === this.email && usuarioRegistrado.password === this.password) {
       console.log('Inicio de sesión exitoso');
+      this.navController.navigateRoot('menu');
       // Redirigir al usuario 
     } else {
       console.error('Credenciales incorrectas. Inténtelo de nuevo.');

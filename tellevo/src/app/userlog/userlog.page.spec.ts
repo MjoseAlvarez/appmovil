@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RestartkeyPage } from './restartkey.page';
+import { UserlogPage } from './userlog.page';
 
-describe('RestartkeyPage', () => {
-  let component: RestartkeyPage;
-  let fixture: ComponentFixture<RestartkeyPage>;
+describe('UserlogPage', () => {
+  let component: UserlogPage;
+  let fixture: ComponentFixture<UserlogPage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RestartkeyPage);
+    fixture = TestBed.createComponent(UserlogPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

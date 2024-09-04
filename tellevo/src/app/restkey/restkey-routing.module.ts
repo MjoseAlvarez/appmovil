@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RestartkeyPage } from './restartkey.page';
+import { RestkeyPage } from './restkey.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: RestartkeyPage
+    component: RestkeyPage
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class RestartkeyPageRoutingModule {}
+export class RestkeyPageRoutingModule {}

@@ -1,26 +1,31 @@
 <ion-content [fullscreen]="true" class="ion-padding background-image">
-  <img src="/assets/icon/imagen.jpeg" alt="Fondo" />
   <div id="container">
+    <div>
+      <img src="/assets/icon/avatar.png" alt="Fondo" />
+    </div>
     <ion-card>
       <ion-card-header>
         <ion-card-title>Bienvenido a TeLlevoApp</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-button routerLink="/login" expand="block" color="light">Iniciar sesión</ion-button>
+        <ion-button routerLink="/restkey" expand="block" color="light">Resetear contraseña</ion-button>
         <ion-button routerLink="/newuser" expand="block" color="light">Registrar usuario</ion-button>
-        <ion-button routerLink="/programaviaje" expand="block" color="light">Programar Viaje</ion-button>
-        <ion-button routerLink="/unirseviaje" expand="block" color="light">Unirse a un Viaje</ion-button>
       </ion-card-content>
     </ion-card>
-
-    <ion-button routerLink="/menu" expand="full" class="ion-margin-top" color="light">Ir al Menú</ion-button>
   </div>
 </ion-content>
-
+<div>
+  <ion-button routerLink="/menu">menu</ion-button>
+  <ion-button routerLink="/userlog">userlog</ion-button>
+</div>
 
 <ion-footer>
-  <ion-toolbar>
-    <strong>Planifica, comparte y regresemos a casa juntos.</strong>
-    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
-  </ion-toolbar>
+  <div>
+    <ion-toolbar>
+      <strong>Planifica, comparte y regresemos a casa juntos.</strong>
+      <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a>
+      </p>
+    </ion-toolbar>
+  </div>
 </ion-footer>
