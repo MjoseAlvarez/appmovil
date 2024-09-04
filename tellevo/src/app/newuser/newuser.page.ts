@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
+import { SedesService } from '../sedes.service';
 
 @Component({
   selector: 'app-newuser',
@@ -11,21 +12,7 @@ export class NewuserPage implements OnInit {
   password: string = '';
   confirmPassword: string = '';
   
-  sedesRm = [
-    { id: 1, nombre: 'Alameda' },
-    { id: 2, nombre: 'Padre Alonso de Ovalle' },
-    { id: 3, nombre: 'Antonio Varas' },
-    { id: 4, nombre: 'Educación Continua' },
-    { id: 5, nombre: 'Maipú' },
-    { id: 6, nombre: 'Melipilla' },
-    { id: 7, nombre: 'Plaza Norte' },
-    { id: 8, nombre: 'Plaza Oeste' },
-    { id: 9, nombre: 'Plaza Vespucio' },
-    { id: 10, nombre: 'Puente Alto' },
-    { id: 11, nombre: 'San Bernardo' },
-    { id: 12, nombre: 'San Carlos de Apoquindo' },
-    { id: 13, nombre: 'San Joaquín' },
-  ];
+  sedesSrv = inject(SedesService);
   
   selectedSede: any;
 

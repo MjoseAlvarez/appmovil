@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; // Importa Router
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,8 @@ import { Component } from '@angular/core';
 export class LoginPage {
   email: string = '';
   password: string = '';
-  navController: any;
 
-  constructor() {}
+  constructor(private router: Router) {} // Inyecta Router
 
   // Método para manejar el inicio de sesión
   login() {
@@ -24,14 +24,14 @@ export class LoginPage {
       return;
     }
 
-    //verificar credenciales
+    // Verificar credenciales
     const usuarioRegistrado = JSON.parse(localStorage.getItem('user') || '{}');
     if (usuarioRegistrado.email === this.email && usuarioRegistrado.password === this.password) {
       console.log('Inicio de sesión exitoso');
-      this.navController.navigateRoot('menu');
-      // Redirigir al usuario 
+      this.router.navigate(['menu']); // Usa Router para la navegación
     } else {
       console.error('Credenciales incorrectas. Inténtelo de nuevo.');
+      this.router.navigate(['menu']); // Usa Router para la navegación
     }
   }
 }

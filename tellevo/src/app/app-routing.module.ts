@@ -16,7 +16,11 @@ const routes: Routes = [
   {
     path: 'userlog',
     loadChildren: () => import('./userlog/userlog.module').then( m => m.UserlogPageModule)
+  },  {
+    path: 'moddatos',
+    loadChildren: () => import('./moddatos/moddatos.module').then( m => m.ModdatosPageModule)
   },
+
 ];
 
 @NgModule({
