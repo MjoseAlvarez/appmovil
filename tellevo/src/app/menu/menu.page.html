@@ -6,6 +6,9 @@
     <ion-title>
       #TeLlevoAPP
     </ion-title>
+    <ion-avatar routerLink="/userlog" slot="end">
+      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Fondo" />
+    </ion-avatar>
   </ion-toolbar>
 </ion-header>
 
@@ -22,15 +25,15 @@
     <ion-card>
       <ion-card-header>
         <!-- Botón para navegar a la página "Programar Viaje" -->
-        <ion-button routerLink="/programaviaje" expand="block">CREAR VIAJE</ion-button>
+        <ion-button routerLink="/programaviaje" expand="block">CONDUCTOR</ion-button>
       </ion-card-header>
       <ion-card-content>
-        Ingresa la planificación de tu viaje para que puedas transportar a tus compañeros.
+        Crea, verifica y acepta solicitudes de viajes.
       </ion-card-content>
 
       <ion-card-header>
         <!-- Botón para navegar a la página "Unirse a un Viaje" -->
-        <ion-button routerLink="/unirseviaje" expand="block">VER VIAJES</ion-button>
+        <ion-button routerLink="/unirseviaje" expand="block">PASAJERO</ion-button>
       </ion-card-header>
       <ion-card-content>
         Busca viajes disponibles para tu destino.
@@ -38,7 +41,6 @@
     </ion-card>
   </div>
 </ion-content>
-
 <ion-footer>
   <ion-toolbar>
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>

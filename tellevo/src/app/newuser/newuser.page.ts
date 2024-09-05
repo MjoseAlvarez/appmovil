@@ -1,5 +1,7 @@
-import { Component, Inject, inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SedesService } from '../sedes.service';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';  // Importa Router para navegación angular
 
 @Component({
   selector: 'app-newuser',
@@ -16,7 +18,8 @@ export class NewuserPage implements OnInit {
   
   selectedSede: any;
 
-  constructor() { }
+  // Inyecta NavController y Router en el constructor
+  constructor(private navController: NavController, private router: Router) { }
 
   ngOnInit() {}
 
@@ -50,6 +53,10 @@ export class NewuserPage implements OnInit {
     }));
 
     console.log('Usuario registrado con éxito:', this.email);
-    // Aquí puedes redirigir al usuario a otra página
+
+    // Redirigir al usuario usando NavController o Router
+    this.navController.navigateForward('home');  // Navegación con NavController de Ionic
+    // O también puedes usar el router de Angular si lo prefieres:
+    // this.router.navigate(['home']);
   }
 }
