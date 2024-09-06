@@ -20,30 +20,35 @@
 
 #container {
   text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  /* Fondo blanco semitransparente */
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
   padding: 20px;
   border-radius: 12px;
 }
 
+/* Ajustes para el tema oscuro */
+.dark-theme #container {
+  background: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+}
+
 ion-button {
-  --background: #ffffff;
-  /* Fondo blanco */
-  --color: #000000;
-  /* Texto negro */
-  --border-radius: 24px;
-  /* Bordes redondeados */
-  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  /* Sombra suave */
-  --border: 2px solid #041a31;
-  /* Borde resaltado de color azul */
-  margin-bottom: 15px;
-  /* Espaciado entre botones */
+  --background: #ffffff; /* Fondo blanco */
+  --color: #000000; /* Texto negro */
+  --border-radius: 24px; /* Bordes redondeados */
+  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  --border: 2px solid #041a31; /* Borde resaltado de color azul */
+  margin-bottom: 15px; /* Espaciado entre botones */
+}
+
+/* Botón en tema oscuro */
+.dark-theme ion-button {
+  --background: #333333; /* Fondo gris oscuro */
+  --color: #ffffff; /* Texto blanco */
+  --border: 2px solid #ffffff; /* Borde blanco */
 }
 
 img {
   border-radius: 50%;
-  width: 150px;
+  width: 200px;
+  height: 200px;
   height: auto;
-  height: 150px;
 }

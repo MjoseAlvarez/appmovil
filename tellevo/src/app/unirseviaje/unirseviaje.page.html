@@ -1,9 +1,14 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="Volver"></ion-back-button>
+      <ion-back-button text="Volver" defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Unirse a un Viaje</ion-title>
+    <ion-title>
+      Unirse a un viaje
+    </ion-title>
+    <ion-avatar routerLink="/userlog" slot="end">
+      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Fondo" />
+    </ion-avatar>
   </ion-toolbar>
 </ion-header>
 

@@ -1,3 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-item lines="none">
+        <ion-icon name="sunny" slot="start"></ion-icon>
+        <ion-toggle [(ngModel)]="isDarkMode" (ionChange)="onThemeChange($event)"></ion-toggle>
+        <ion-icon name="moon" slot="end"></ion-icon>
+      </ion-item>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true" class="ion-padding background-image">
   <div id="container">
     <div>
@@ -9,7 +20,6 @@
       </ion-card-header>
       <ion-card-content>
         <ion-button routerLink="/login" expand="block" color="light">Iniciar sesión</ion-button>
-        <ion-button routerLink="/restkey" expand="block" color="light">Resetear contraseña</ion-button>
         <ion-button routerLink="/newuser" expand="block" color="light">Registrar usuario</ion-button>
       </ion-card-content>
     </ion-card>
@@ -18,8 +28,8 @@
 <div>
   <ion-button routerLink="/menu">menu</ion-button>
   <ion-button routerLink="/userlog">userlog</ion-button>
+  <ion-button routerLink="/menudriver">menu cond</ion-button>
 </div>
-
 <ion-footer>
   <div>
     <ion-toolbar>

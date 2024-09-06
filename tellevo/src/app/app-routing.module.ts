@@ -20,6 +20,18 @@ const routes: Routes = [
     path: 'moddatos',
     loadChildren: () => import('./moddatos/moddatos.module').then( m => m.ModdatosPageModule)
   },
+  {
+    path: 'menudriver',
+    loadChildren: () => import('./menudriver/menudriver.module').then( m => m.MenudriverPageModule)
+  },
+  {
+    path: 'modificaviaje',
+    loadChildren: () => import('./modificaviaje/modificaviaje.module').then( m => m.ModificaviajePageModule)
+  },
+  {
+    path: 'solicitudesviaje',
+    loadChildren: () => import('./solicitudesviaje/solicitudesviaje.module').then( m => m.SolicitudesviajePageModule)
+  },
 
 ];
 

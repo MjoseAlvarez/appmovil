@@ -11,6 +11,14 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">RUN</ion-label>
+        <ion-input [(ngModel)]="run"></ion-input>
+      </ion-item>
+      <ion-item>
         <ion-label position="floating">Correo Electrónico</ion-label>
         <ion-input [(ngModel)]="email" type="email"></ion-input>
       </ion-item>
@@ -22,11 +30,13 @@
         <ion-label position="floating">Confirmar Contraseña</ion-label>
         <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
       </ion-item>
-        <ion-item>
-          <ion-label position="floating"></ion-label><ion-select [(ngModel)]="selectedSede" placeholder="Selecciona tu sede">
-            <ion-select-option *ngFor="let sede of sedesSrv.sedesRm" [value]="sede.id">{{ sede.nombre }}</ion-select-option>
-          </ion-select>
-        </ion-item>
+      <ion-item>
+        <ion-label position="floating"></ion-label><ion-select [(ngModel)]="selectedSede"
+          placeholder="Selecciona tu sede">
+          <ion-select-option *ngFor="let sede of sedesSrv.sedesRm" [value]="sede.id">{{ sede.nombre
+            }}</ion-select-option>
+        </ion-select>
+      </ion-item>
       <ion-button expand="full" (click)="registro()">Registrar</ion-button>
     </ion-card-content>
   </ion-card>
@@ -36,6 +46,7 @@
 <ion-footer>
   <ion-toolbar>
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
-    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
+    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a>
+    </p>
   </ion-toolbar>
 </ion-footer>

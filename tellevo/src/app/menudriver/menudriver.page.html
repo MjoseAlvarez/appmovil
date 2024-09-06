@@ -4,7 +4,7 @@
       <ion-back-button text="Volver" defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      #TeLlevoAPP
+      Conductor
     </ion-title>
     <ion-avatar routerLink="/userlog" slot="end">
       <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Fondo" />
@@ -13,30 +13,25 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        #TeLlevoAPP
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div class="content">
     <ion-card>
       <ion-card-header>
-        <!-- Botón para navegar a la página "Programar Viaje" -->
-        <ion-button routerLink="/menudriver" expand="block">CONDUCTOR</ion-button>
+        <ion-button routerLink="/programaviaje" expand="block">Programar viaje</ion-button>
       </ion-card-header>
       <ion-card-content>
-        Crea, modifica y revisa solicitudes de viajes.
+        Crea viajes para transportar a usuarios de tu sede.
       </ion-card-content>
-
       <ion-card-header>
-        <!-- Botón para navegar a la página "Unirse a un Viaje" -->
-        <ion-button routerLink="/unirseviaje" expand="block">PASAJERO</ion-button>
+        <ion-button routerLink="/modificaviaje" expand="block">Modificar viaje</ion-button>
       </ion-card-header>
       <ion-card-content>
-        Busca viajes disponibles para tu destino.
+        Modifica las opciones del viaje ya programado.
+      </ion-card-content>
+      <ion-card-header>
+        <ion-button routerLink="/solicitudesviaje" expand="block">Ver solicitudes</ion-button>
+      </ion-card-header>
+      <ion-card-content>
+        Acepta o rechaza solicitudes de los usurios para tu viaje programado.
       </ion-card-content>
     </ion-card>
   </div>
