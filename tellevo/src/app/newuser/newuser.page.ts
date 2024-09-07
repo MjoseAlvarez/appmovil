@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { SedesService } from '../sedes.service';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular'; // Importa AlertController
 import { Router } from '@angular/router';  
 
 @Component({
@@ -13,18 +13,22 @@ export class NewuserPage implements OnInit {
   nombre: string = '';
   run: string = '';
   email: string = '';
-  telefono: string = '';  // Nuevo campo para teléfono
+  telefono: string = '';  
   password: string = '';
   confirmPassword: string = '';
 
   sedesSrv = inject(SedesService);
   selectedSede: any;
 
-  constructor(private navController: NavController, private router: Router) { }
+  constructor(
+    private navController: NavController, 
+    private router: Router, 
+    private alertController: AlertController // Inyecta AlertController
+  ) { }
 
   ngOnInit() {}
 
-  registro() {
+  async registro() {
     if (!this.nombre || this.nombre.trim().length === 0) {
       console.error('Por favor, ingrese un nombre válido.');
       return;
@@ -36,9 +40,9 @@ export class NewuserPage implements OnInit {
       return;
     }
 
-    const telefonoRegex = /^\+56\s9\s\d{4}\s\d{4}$/;
+    const telefonoRegex = /^\+569\d{8}$/; 
     if (!telefonoRegex.test(this.telefono)) {
-      console.error('Número de teléfono no válido. Debe ser un número chileno.');
+      console.error('Número de teléfono no válido.');
       return;
     }
 
@@ -62,6 +66,7 @@ export class NewuserPage implements OnInit {
       return;
     }
 
+    // Guardar el usuario en localStorage
     localStorage.setItem('user', JSON.stringify({
       nombre: this.nombre,
       run: this.run,
@@ -71,7 +76,18 @@ export class NewuserPage implements OnInit {
       sede: this.selectedSede
     }));
 
-    console.log('Usuario registrado con éxito:', this.email);
-    this.navController.navigateForward('home');
+    // Mostrar el Alert de éxito
+    const alert = await this.alertController.create({
+      header: 'Registro Exitoso',
+      message: 'Usuario registrado con éxito.',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          this.navController.navigateForward('menu');  // Redirigir al menú
+        }
+      }]
+    });
+
+    await alert.present();
   }
 }
