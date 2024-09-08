@@ -15,10 +15,35 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="content">
     <ion-card>
-      
+      <!-- Aquí añadimos la lista de solicitudes de viaje -->
+      <ion-list>
+        <ion-item *ngFor="let solicitud of solicitudes">
+          <!-- Avatar del usuario -->
+          <ion-avatar slot="start">
+            <img src="{{solicitud.avatar}}" alt="Avatar del usuario"/>
+          </ion-avatar>
+
+          <!-- Información del usuario que solicitó -->
+          <ion-label>
+            <h2>{{solicitud.nombre}}</h2>
+            
+          </ion-label>
+
+          <!-- Botón de aceptar solicitud -->
+          <ion-button color="success" (click)="aceptarSolicitud(solicitud)">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </ion-button>
+
+          <!-- Botón de rechazar solicitud -->
+          <ion-button color="danger" (click)="rechazarSolicitud(solicitud)">
+            <ion-icon name="close-circle"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
     </ion-card>
   </div>
 </ion-content>
+
 <ion-footer>
   <ion-toolbar>
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
