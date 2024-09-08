@@ -21,6 +21,7 @@ export class SedesService {
     { id: 13, nombre: 'San Joaquín' },
   ];
   
+  jornada: string='Diurna';
 
   constructor() { }
 }

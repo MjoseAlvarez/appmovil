@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./newuser.page.scss'],
 })
 export class NewuserPage implements OnInit {
-
   // Variables para almacenar los datos del formulario
   nombre: string = '';
   run: string = '';
@@ -17,6 +16,7 @@ export class NewuserPage implements OnInit {
   telefono: string = '';
   password: string = '';
   confirmPassword: string = '';
+  jornada: string = '';
 
   // Variables para almacenar los mensajes de error
   nombreError: string = '';
@@ -26,6 +26,9 @@ export class NewuserPage implements OnInit {
   passwordError: string = '';
   confirmPasswordError: string = '';
   sedeError: string = '';
+
+  // Variable para el toggle
+  isDiurno: boolean = true;
 
   // Inyección del servicio de sedes
   sedesSrv = inject(SedesService);
@@ -39,6 +42,11 @@ export class NewuserPage implements OnInit {
   ) { }
 
   ngOnInit() {}
+
+  toggleChanged() {
+    this.sedesSrv.jornada = this.isDiurno ? 'Diurna' : 'Vespertina';
+    console.log(`Modo ${this.sedesSrv.jornada} activado`);
+  }
 
   // Método para registrar un nuevo usuario
   async registro() {
@@ -95,7 +103,8 @@ export class NewuserPage implements OnInit {
       telefono: this.telefono,
       email: this.email,
       password: this.password,
-      sede: this.selectedSede
+      sede: this.selectedSede,
+      jornada: this.sedesSrv.jornada // Añadir la jornada al registro
     }));
 
     // Mostrar alerta de éxito

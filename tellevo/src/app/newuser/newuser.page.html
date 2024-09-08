@@ -67,6 +67,12 @@
           <ion-select-option *ngFor="let sede of sedesSrv.sedesRm" [value]="sede.id">{{ sede.nombre }}</ion-select-option>
         </ion-select>
       </ion-item>
+  <!-- Selector reactivo para la jornada de estudio -->
+  <ion-item>
+    <ion-toggle slot="start" [(ngModel)]="isDiurno" (ionChange)="toggleChanged()">Diurno</ion-toggle>
+    <ion-label slot="start">Vespertino</ion-label>
+  </ion-item>
+        
       <!-- Mensaje de error para la sede -->
       <ion-text color="danger" *ngIf="sedeError">{{ sedeError }}</ion-text>
 
