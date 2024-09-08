@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
 
 import { ModificaviajePageRoutingModule } from './modificaviaje-routing.module';
 
-import { ModificaviajePage } from './modificaviaje.page';
+import { ModificarViajePage } from './modificaviaje.page';
 
 @NgModule({
   imports: [
@@ -15,6 +14,6 @@ import { ModificaviajePage } from './modificaviaje.page';
     IonicModule,
     ModificaviajePageRoutingModule
   ],
-  declarations: [ModificaviajePage]
+  declarations: [ModificarViajePage]
 })
 export class ModificaviajePageModule {}
