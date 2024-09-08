@@ -8,16 +8,19 @@ import { AlertController } from '@ionic/angular';
 })
 export class SolicitudesviajePage implements OnInit {
 
+  // Lista de solicitudes de viaje
   solicitudes = [
     { nombre: 'Juan Pérez', email: 'juanperez@mail.com', avatar: '../../assets/icon/avatar.png' },
     { nombre: 'María González', email: 'mariagonzalez@mail.com', avatar: '../../assets/icon/avatar.png' },
     // Puedes agregar más solicitudes...
   ];
 
+  // Inyección de AlertController para mostrar alertas
   constructor(private alertController: AlertController) { }
 
   ngOnInit() {}
 
+  // Método para aceptar una solicitud
   async aceptarSolicitud(solicitud: any) {
     const alert = await this.alertController.create({
       header: 'Solicitud aceptada',
@@ -28,6 +31,7 @@ export class SolicitudesviajePage implements OnInit {
     await alert.present();
   }
 
+  // Método para rechazar una solicitud
   async rechazarSolicitud(solicitud: any) {
     const alert = await this.alertController.create({
       header: 'Solicitud rechazada',

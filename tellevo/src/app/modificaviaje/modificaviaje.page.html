@@ -1,8 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <!-- Botón de retroceso ubicado al inicio -->
     <ion-buttons slot="start">
       <ion-back-button text="Volver" defaultHref="/home"></ion-back-button>
     </ion-buttons>
+    <!-- Título de la página -->
     <ion-title>Modificar viaje</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,18 +12,22 @@
 <ion-content class="ion-padding">
   <ion-card>
     <ion-card-content>
+      <!-- Campo de entrada para el destino del viaje -->
       <ion-item>
         <ion-label position="floating">Destino</ion-label>
         <ion-input [(ngModel)]="viaje.destino"></ion-input>
       </ion-item>
+      <!-- Campo de entrada para la capacidad del viaje -->
       <ion-item>
         <ion-label position="floating">Capacidad</ion-label>
         <ion-input type="number" [(ngModel)]="viaje.capacidad"></ion-input>
       </ion-item>
+      <!-- Campo de entrada para el costo por persona -->
       <ion-item>
         <ion-label position="floating">Costo por persona</ion-label>
         <ion-input type="number" [(ngModel)]="viaje.costoPorPersona"></ion-input>
       </ion-item>
+      <!-- Botón para guardar los cambios -->
       <ion-button expand="full" (click)="modificarViaje()">Guardar cambios</ion-button>
     </ion-card-content>
   </ion-card>
@@ -29,7 +35,9 @@
 
 <ion-footer>
   <ion-toolbar>
+    <!-- Mensaje de pie de página -->
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
+    <!-- Enlace al sitio web -->
     <p>Visítanos <a href="http://www.tellevoapp.com" target="_blank" rel="noopener noreferrer">www.tellevoapp.com</a></p>
   </ion-toolbar>
 </ion-footer>

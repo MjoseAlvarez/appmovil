@@ -5,14 +5,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: fadeIn 2s ease-in-out;
+  animation: fadeIn 2s ease-in-out; /* Animación de desvanecimiento */
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
   }
@@ -22,7 +21,7 @@
   text-align: center;
   background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 12px; /* Bordes redondeados */
 }
 
 /* Ajustes para el tema oscuro */
@@ -47,8 +46,19 @@ ion-button {
 }
 
 img {
-  border-radius: 50%;
+  border-radius: 50%; /* Imagen circular */
   width: 200px;
-  height: 200px;
   height: auto;
+}
+
+/* Ajustes para el ion-card en tema oscuro */
+.dark-theme ion-card {
+  --background: #333333; /* Fondo gris oscuro */
+  --color: #ffffff; /* Texto blanco */
+}
+
+.dark-theme ion-card-header,
+.dark-theme ion-card-content {
+  --background: #333333; /* Fondo gris oscuro */
+  --color: #ffffff; /* Texto blanco */
 }

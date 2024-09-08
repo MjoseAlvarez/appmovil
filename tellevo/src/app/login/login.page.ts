@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Importa Router
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -10,28 +11,46 @@ export class LoginPage {
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router) {} // Inyecta Router
+  emailError: string = '';
+  passwordError: string = '';
 
-  // Método para manejar el inicio de sesión
-  login() {
+  constructor(private router: Router, private alertController: AlertController) {}
+
+  async login() {
+    this.resetErrors();
+
     if (!this.email.includes('@')) {
-      console.error('Por favor, ingrese un correo electrónico válido.');
+      this.emailError = 'Por favor, ingrese un correo electrónico válido.';
       return;
     }
 
     if (this.password.length < 6) {
-      console.error('La contraseña debe tener al menos 6 caracteres.');
+      this.passwordError = 'La contraseña debe tener al menos 6 caracteres.';
       return;
     }
 
-    // Verificar credenciales
     const usuarioRegistrado = JSON.parse(localStorage.getItem('user') || '{}');
     if (usuarioRegistrado.email === this.email && usuarioRegistrado.password === this.password) {
       console.log('Inicio de sesión exitoso');
-      this.router.navigate(['menu']); // Usa Router para la navegación
+      this.router.navigate(['menu']);
     } else {
-      console.error('Credenciales incorrectas. Inténtelo de nuevo.');
-      this.router.navigate(['menu']); // Usa Router para la navegación
+      this.passwordError = 'Credenciales incorrectas. Inténtelo de nuevo.';
+      await this.showAlert('Error', 'Credenciales incorrectas. Inténtelo de nuevo.');
     }
+  }
+
+  resetErrors() {
+    this.emailError = '';
+    this.passwordError = '';
+  }
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }

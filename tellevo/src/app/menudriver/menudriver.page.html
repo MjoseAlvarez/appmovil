@@ -1,11 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <!-- Botón de retroceso ubicado al inicio -->
     <ion-buttons slot="start">
       <ion-back-button text="Volver" defaultHref="/"></ion-back-button>
     </ion-buttons>
+    <!-- Título de la página -->
     <ion-title>
       Conductor
     </ion-title>
+    <!-- Avatar con enlace al perfil de usuario -->
     <ion-avatar routerLink="/userlog" slot="end">
       <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Fondo" />
     </ion-avatar>
@@ -15,30 +18,38 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="content">
     <ion-card>
+      <!-- Botón para programar viaje -->
       <ion-card-header>
         <ion-button routerLink="/programaviaje" expand="block">Programar viaje</ion-button>
       </ion-card-header>
       <ion-card-content>
         Crea viajes para transportar a usuarios de tu sede.
       </ion-card-content>
+
+      <!-- Botón para modificar viaje -->
       <ion-card-header>
         <ion-button routerLink="/modificaviaje" expand="block">Modificar viaje</ion-button>
       </ion-card-header>
       <ion-card-content>
         Modifica las opciones del viaje ya programado.
       </ion-card-content>
+
+      <!-- Botón para ver solicitudes -->
       <ion-card-header>
         <ion-button routerLink="/solicitudesviaje" expand="block">Ver solicitudes</ion-button>
       </ion-card-header>
       <ion-card-content>
-        Acepta o rechaza solicitudes de los usurios para tu viaje programado.
+        Acepta o rechaza solicitudes de los usuarios para tu viaje programado.
       </ion-card-content>
     </ion-card>
   </div>
 </ion-content>
+
 <ion-footer>
   <ion-toolbar>
+    <!-- Mensaje de pie de página -->
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
+    <!-- Enlace al sitio web -->
     <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
   </ion-toolbar>
 </ion-footer>

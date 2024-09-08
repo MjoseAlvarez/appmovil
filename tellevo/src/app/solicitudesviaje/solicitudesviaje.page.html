@@ -1,11 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <!-- Botón de retroceso ubicado al inicio -->
     <ion-buttons slot="start">
-      <ion-back-button text="Volver" defaultHref="/"></ion-back-button>
+      <ion-back-button text="Volver" defaultHref="/home"></ion-back-button>
     </ion-buttons>
+    <!-- Título de la página -->
     <ion-title>
       Solicitudes de viajes
     </ion-title>
+    <!-- Avatar con enlace al perfil de usuario -->
     <ion-avatar routerLink="/userlog" slot="end">
       <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Fondo" />
     </ion-avatar>
@@ -26,7 +29,6 @@
           <!-- Información del usuario que solicitó -->
           <ion-label>
             <h2>{{solicitud.nombre}}</h2>
-            
           </ion-label>
 
           <!-- Botón de aceptar solicitud -->
@@ -46,7 +48,9 @@
 
 <ion-footer>
   <ion-toolbar>
+    <!-- Mensaje de pie de página -->
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
+    <!-- Enlace al sitio web -->
     <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
   </ion-toolbar>
 </ion-footer>

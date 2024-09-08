@@ -5,14 +5,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: fadeIn 2s ease-in-out;
+  animation: fadeIn 2s ease-in-out; /* Animación de desvanecimiento */
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
   }
@@ -20,31 +19,43 @@
 
 #container {
   text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  /* Fondo blanco semitransparente */
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 12px; /* Bordes redondeados */
 }
 
 ion-button {
-  --background-color: transparent;
-  --background: #ffffff;
-  /* Fondo blanco */
-  --color: #000000;
-  /* Texto negro */
-  --border-radius: 24px;
-  /* Bordes redondeados */
-  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  /* Sombra suave */
-  --border: 2px solid #041a31;
-  /* Borde resaltado de color azul */
-  margin-bottom: 15px;
-  /* Espaciado entre botones */
+  --background-color: transparent; /* Fondo transparente */
+  --background: #ffffff; /* Fondo blanco */
+  --color: #000000; /* Texto negro */
+  --border-radius: 24px; /* Bordes redondeados */
+  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  --border: 2px solid #041a31; /* Borde resaltado de color azul */
+  margin-bottom: 15px; /* Espaciado entre botones */
 }
 
 img {
-  border-radius: 50%;
+  border-radius: 50%; /* Imagen circular */
   width: 50px;
-  height: auto;
   height: 50px;
+  object-fit: cover; /* Asegura que la imagen mantenga su proporción */
+}
+
+.image-container img {
+  width: 100%; /* Ajusta el ancho de la imagen al contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 12px; /* Aplica bordes redondeados */
+}
+
+ion-button:hover {
+  --background: #f0f0f0; /* Fondo ligeramente más oscuro al pasar el ratón */
+}
+
+ion-button:focus {
+  outline: none; /* Eliminar el borde de enfoque predeterminado */
+  box-shadow: 0 0 0 3px rgba(4, 26, 49, 0.5); /* Añadir un borde de enfoque personalizado */
+}
+
+ion-button:active {
+  --background: #e0e0e0; /* Fondo más oscuro al hacer clic */
 }

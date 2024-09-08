@@ -39,7 +39,7 @@ export class ModdatosPage implements OnInit {
     await alert.present();
 
     console.log('Teléfono modificado con éxito:', this.telefono);
-    this.navController.navigateBack('/home'); 
+    this.navController.navigateBack('/userlog'); 
   }
 
   
