@@ -69,9 +69,10 @@
       </ion-item>
   <!-- Selector reactivo para la jornada de estudio -->
   <ion-item>
-    <ion-toggle slot="start" [(ngModel)]="isDiurno" (ionChange)="toggleChanged()">Diurno</ion-toggle>
-    <ion-label slot="start">Vespertino</ion-label>
+    <ion-toggle slot="start" [(ngModel)]="isDiurno" (ionChange)="toggleChanged()">Vespertina</ion-toggle>
+    <ion-label slot="start">Diurna</ion-label>
   </ion-item>
+
         
       <!-- Mensaje de error para la sede -->
       <ion-text color="danger" *ngIf="sedeError">{{ sedeError }}</ion-text>
