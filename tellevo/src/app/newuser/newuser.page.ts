@@ -16,7 +16,9 @@ export class NewuserPage implements OnInit {
   telefono: string = '';  
   password: string = '';
   confirmPassword: string = '';
-  isDiurno: boolean = true;
+  modalidad: string = '';
+
+  isDiurno: boolean = false;
 
   // Definir todas las propiedades de error
   telefonoError: string = '';
@@ -55,10 +57,16 @@ export class NewuserPage implements OnInit {
     // Descartar el loader
     await loader.dismiss();
   }
+  toggleDiurnoChanged(event: any) {
+    if (event.detail.checked) {
+      this.sedesSrv.setModalidad('Diurno');
+    }
+  }
 
-  toggleChanged() {
-    this.isDiurno = !this.isDiurno;
-    console.log('Modo cambiado a', this.isDiurno ? 'Diurno' : 'Vespertino');
+  toggleVespertinoChanged(event: any) {
+    if (event.detail.checked) {
+      this.sedesSrv.setModalidad('Vespertino');
+    }
   }
 
   async registro() {
@@ -133,7 +141,7 @@ export class NewuserPage implements OnInit {
       email: this.email,
       password: this.password,
       sede: this.selectedSede,
-      modalidad: this.isDiurno ? 'Diurno' : 'Vespertino'
+      modalidad: this.sedesSrv.modalidad,
     }));
 
     // Cerrar el loader una vez que se guarda el usuario

@@ -21,7 +21,12 @@ export class SedesService {
     { id: 13, nombre: 'San Joaquín' },
   ];
   
-  jornada: string='Diurna';
+  modalidad: string='Diurno';
 
   constructor() { }
+
+  setModalidad(modalidad: string) {
+    this.modalidad = modalidad;
+    console.log('Modalidad cambiada a', this.modalidad);
+  }
 }
