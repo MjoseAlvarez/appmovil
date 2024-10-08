@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@capacitor-firebase/authentication": "^6.1.0",
+    "capacitor-barcode-scanner": "^2.3.0",
+    "firebase": "^10.13.2"
+  }
+}
