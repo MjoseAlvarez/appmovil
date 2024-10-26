@@ -1,96 +1,23 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <!-- Botón de retroceso ubicado al inicio -->
-    <ion-buttons slot="start">
-      <ion-back-button text="Volver" defaultHref="/home"></ion-back-button>
-    </ion-buttons>
-    <!-- Título de la página -->
     <ion-title>Registrar Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-content>
-      <!-- Campo de entrada para el nombre -->
-      <ion-item>
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input [(ngModel)]="nombre"></ion-input>
-      </ion-item>
-      <!-- Mensaje de error para el nombre -->
-      <ion-text color="danger" *ngIf="nombreError">{{ nombreError }}</ion-text>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input [(ngModel)]="email" type="email"></ion-input>
+    </ion-item>
 
-      <!-- Campo de entrada para el RUN -->
-      <ion-item>
-        <ion-label position="floating">RUN (ej:12345678-9)</ion-label>
-        <ion-input [(ngModel)]="run"></ion-input>
-      </ion-item>
-      <!-- Mensaje de error para el RUN -->
-      <ion-text color="danger" *ngIf="runError">{{ runError }}</ion-text>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
 
-      <!-- Campo de entrada para el correo electrónico -->
-      <ion-item>
-        <ion-label position="floating">Correo Electrónico</ion-label>
-        <ion-input [(ngModel)]="email" type="email"></ion-input>
-      </ion-item>
-      <!-- Mensaje de error para el correo electrónico -->
-      <ion-text color="danger" *ngIf="emailError">{{ emailError }}</ion-text>
+    <ion-text color="danger" *ngIf="sedeError">{{ sedeError }}</ion-text>
 
-      <!-- Campo de entrada para la contraseña -->
-      <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input [(ngModel)]="password" type="password"></ion-input>
-      </ion-item>
-      <!-- Mensaje de error para la contraseña -->
-      <ion-text color="danger" *ngIf="passwordError">{{ passwordError }}</ion-text>
-
-      <!-- Campo de entrada para confirmar la contraseña -->
-      <ion-item>
-        <ion-label position="floating">Confirmar Contraseña</ion-label>
-        <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
-      </ion-item>
-      <!-- Mensaje de error para confirmar la contraseña -->
-      <ion-text color="danger" *ngIf="confirmPasswordError">{{ confirmPasswordError }}</ion-text>
-      <!-- Campo de entrada para el teléfono -->
-      <ion-item>
-        <ion-label position="floating">Teléfono (ej:+56987654321)</ion-label>
-        <ion-input [(ngModel)]="telefono" type="tel" placeholder=" "></ion-input>
-      </ion-item>
-      <!-- Mensaje de error para el teléfono -->
-      <ion-text color="danger" *ngIf="telefonoError">{{ telefonoError }}</ion-text>
-      <!-- Selector para la sede -->
-      <ion-item>
-        <ion-label position="floating">Selecciona tu sede</ion-label>
-        <ion-select [(ngModel)]="selectedSede" placeholder=" ">
-          <ion-select-option *ngFor="let sede of sedesSrv.sedesRm" [value]="sede.id">{{ sede.nombre
-            }}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <!-- Selector reactivo para la jornada de estudio -->
-      <ion-item>
-        <ion-toggle slot="start" (ionChange)="toggleDiurnoChanged($event)" [checked]="sedesSrv.modalidad === 'Diurno'">Diurno</ion-toggle>
-        <ion-toggle slot="end" (ionChange)="toggleVespertinoChanged($event)" [checked]="sedesSrv.modalidad === 'Vespertino'">Vespertino</ion-toggle>
-      </ion-item>
-        <ion-item><ion-text slot="start">Jornada seleccionada: {{sedesSrv.modalidad}}</ion-text>
-      </ion-item>
-
-      <!-- Mensaje de error para la sede -->
-      <ion-text color="danger" *ngIf="sedeError">{{ sedeError }}</ion-text>
-      <!-- Botón para registrar -->
-      <ion-button expand="full" (click)="registro()">Registrar</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Botón para ir al menú -->
-  <ion-button routerLink="/home" expand="full">Ir al Menú</ion-button>
+    <ion-button expand="full" (click)="registro()">Registrar</ion-button>
+  </ion-list>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <!-- Mensaje de pie de página -->
-    <strong>Planifica, comparte y regresemos a casa juntos.</strong>
-    <!-- Enlace al sitio web -->
-    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a>
-    </p>
-  </ion-toolbar>
-</ion-footer>

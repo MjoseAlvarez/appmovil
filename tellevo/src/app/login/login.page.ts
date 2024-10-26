@@ -1,24 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { LoginService } from '../login.service';  // Asegúrate de tener el servicio en la ruta correcta
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
+
+  toastSrv = inject(ToastController);
+  loginSrv = inject(LoginService);
+  nav = inject(NavController);
 
   emailError: string = '';
   passwordError: string = '';
 
   constructor(private router: Router, private alertController: AlertController) {}
 
+  ngOnInit(): void {}
+
   async login() {
     this.resetErrors();
 
+    // Validaciones de email y contraseña
     if (!this.email.includes('@')) {
       this.emailError = 'Por favor, ingrese un correo electrónico válido.';
       return;
@@ -29,13 +37,24 @@ export class LoginPage {
       return;
     }
 
-    const usuarioRegistrado = JSON.parse(localStorage.getItem('user') || '{}');
-    if (usuarioRegistrado.email === this.email && usuarioRegistrado.password === this.password) {
+    try {
+      // Llama al servicio de autenticación para iniciar sesión
+      await this.loginSrv.login(this.email, this.password);
       console.log('Inicio de sesión exitoso');
-      this.router.navigate(['menu']);
-    } else {
-      this.passwordError = 'Credenciales incorrectas. Inténtelo de nuevo.';
-      await this.showAlert('Error', 'Credenciales incorrectas. Inténtelo de nuevo.');
+      this.router.navigate(['menu']);  // Redirigir a la página de menú
+    } catch (error: any) {
+      console.error('Error al iniciar sesión', error);
+      let errorMsg = 'Error al iniciar sesión. Inténtelo de nuevo.';
+      
+      // Mensajes personalizados de error
+      if (error.message.includes('auth/user-not-found')) {
+        errorMsg = 'Usuario no encontrado.';
+      } else if (error.message.includes('auth/wrong-password')) {
+        errorMsg = 'Contraseña incorrecta.';
+      }
+
+      this.passwordError = errorMsg;
+      await this.showAlert('Error', errorMsg);
     }
   }
 
@@ -50,7 +69,6 @@ export class LoginPage {
       message,
       buttons: ['OK']
     });
-
     await alert.present();
   }
 }

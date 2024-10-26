@@ -1,12 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <!-- Título de la aplicación -->
+    <!-- Título de la aplicación con estilo -->
     <ion-title>
       #TeLlevoAPP
     </ion-title>
     <!-- Avatar con enlace al perfil de usuario -->
     <ion-avatar routerLink="/userlog" slot="end">
-      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Fondo" />
+      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Perfil del usuario" />
     </ion-avatar>
   </ion-toolbar>
 </ion-header>
@@ -21,28 +21,32 @@
     </ion-toolbar>
   </ion-header>
 
+  <!-- Contenido de la página -->
   <div class="content">
     <ion-card>
-      <!-- Botón para conductores -->
+      <!-- Sección para conductores -->
       <ion-card-header>
-        <ion-button routerLink="/menudriver" expand="block">CONDUCTOR</ion-button>
+        <ion-button routerLink="/menudriver" expand="block" color="primary">CONDUCTOR</ion-button>
       </ion-card-header>
       <ion-card-content>
         Crea, modifica y revisa solicitudes de viajes.
       </ion-card-content>
+    </ion-card>
 
-      <!-- Botón para pasajeros -->
+    <ion-card>
+      <!-- Sección para pasajeros -->
       <ion-card-header>
-        <ion-button routerLink="/unirseviaje" expand="block">PASAJERO</ion-button>
+        <ion-button routerLink="/unirseviaje" expand="block" color="secondary">PASAJERO</ion-button>
       </ion-card-header>
       <ion-card-content>
         Busca viajes disponibles para tu destino.
       </ion-card-content>
     </ion-card>
   </div>
+
+  <!-- Imagen de fondo -->
   <div class="image-container">
-    <!-- Imagen de fondo -->
-    <img src="assets/images/noche.jpeg" alt="Imagen de noche">
+    <img src="assets/images/noche.jpeg" alt="Imagen de fondo nocturna" />
   </div>
 </ion-content>
 
@@ -51,6 +55,6 @@
     <!-- Mensaje de pie de página -->
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
     <!-- Enlace al sitio web -->
-    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
+    <p>Visítanos en <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
   </ion-toolbar>
 </ion-footer>

@@ -1,14 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <!-- Botones ubicados al final del toolbar -->
+    <ion-title>
+      Bienvenido a TeLlevoApp
+    </ion-title>
     <ion-buttons slot="end">
-      <!-- Elemento de ítem sin líneas -->
       <ion-item lines="none">
-        <!-- Icono de sol al inicio -->
         <ion-icon name="sunny" slot="start"></ion-icon>
-        <!-- Toggle para cambiar el tema -->
         <ion-toggle [(ngModel)]="isDarkMode" (ionChange)="onThemeChange($event)"></ion-toggle>
-        <!-- Icono de luna al final -->
         <ion-icon name="moon" slot="end"></ion-icon>
       </ion-item>
     </ion-buttons>
@@ -17,18 +15,14 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <div style="text-align: center;">
-    <!-- Imagen de avatar -->
-    <img src="/assets/icon/avatar.png" alt="Fondo" />
+    <img src="assets/icon/avatar.png" alt="Avatar" style="width: 100px; height: 100px;" />
     <ion-card>
       <ion-card-header>
-        <!-- Título del card subrayado -->
         <ion-card-title><u>Bienvenido a TeLlevoApp</u></ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <!-- Botón para iniciar sesión -->
-        <ion-button routerLink="/login" expand="block" color="light">Iniciar sesión</ion-button>
-        <!-- Botón para registrar usuario -->
-        <ion-button routerLink="/newuser" expand="block" color="light">Registrar usuario</ion-button>
+        <ion-button routerLink="/login" expand="block" color="primary">Iniciar sesión</ion-button>
+        <ion-button routerLink="/newuser" expand="block" color="secondary">Registrar usuario</ion-button>
       </ion-card-content>
     </ion-card>
   </div>
@@ -37,10 +31,8 @@
 <ion-footer>
   <ion-toolbar>
     <div>
-      <!-- Mensaje de pie de página -->
       <strong>Planifica, comparte y regresemos a casa juntos.</strong>
-      <!-- Enlace al sitio web -->
-      <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
+      <p>Visítanos en <a href="http://www.tellevoapp.com" target="_blank" rel="noopener noreferrer">www.tellevoapp.com</a></p>
     </div>
   </ion-toolbar>
 </ion-footer>
