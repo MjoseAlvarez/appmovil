@@ -1,49 +1,46 @@
-// Importa los módulos necesarios de Angular y Ionic
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
-// Define el componente con su selector, plantilla y estilos
 @Component({
-  selector: 'app-userlog', // Selector del componente
-  templateUrl: './userlog.page.html', // Ruta de la plantilla HTML
-  styleUrls: ['./userlog.page.scss'], // Ruta de los estilos CSS
+  selector: 'app-userlog',
+  templateUrl: './userlog.page.html',
+  styleUrls: ['./userlog.page.scss'],
 })
 export class UserlogPage implements OnInit {
 
-  // Constructor que inyecta los servicios AlertController y Router
-  constructor(private alertController: AlertController, private router: Router) { }
+  constructor(private alertController: AlertController, private router: Router, private loginService: LoginService) { }
 
-  // Método que se ejecuta al inicializar el componente
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  // Método asíncrono para presentar una alerta de cierre de sesión
   async presentLogoutAlert() {
-    // Crea la alerta con el título, mensaje y botones
     const alert = await this.alertController.create({
-      header: 'Cerrar sesión', // Título de la alerta
-      message: '¿Estás seguro de que deseas cerrar sesión?', // Mensaje de la alerta
+      header: 'Cerrar sesión',
+      message: '¿Estás seguro de que deseas cerrar sesión?',
       buttons: [
         {
-          text: 'Cancelar', // Texto del botón de cancelar
-          role: 'cancel', // Rol del botón de cancelar
-          cssClass: 'secondary', // Clase CSS del botón de cancelar
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel'); // Acción al cancelar
+            console.log('Confirm Cancel');
           }
         }, {
-          text: 'Cerrar sesión', // Texto del botón de cerrar sesión
-          handler: () => {
-            console.log('Confirm Logout'); // Acción al confirmar cierre de sesión
-            // Aquí puedes añadir la lógica para cerrar sesión
-            this.router.navigate(['/home']); // Navega a la página de inicio
+          text: 'Cerrar sesión',
+          handler: async () => {
+            console.log('Confirm Logout');
+            try {
+              await this.loginService.cerrarSesion();
+              this.router.navigate(['/home']);  // Navega a la página de login después de cerrar sesión
+            } catch (error) {
+              console.error('Error al cerrar sesión:', error);
+            }
           }
         }
       ]
     });
 
-    // Presenta la alerta
     await alert.present();
   }
 }

@@ -4,6 +4,7 @@
     "@capacitor-firebase/authentication": "^6.2.0",
     "@capacitor/cli": "^6.1.2",
     "@capacitor/core": "^6.1.2",
+    "@capacitor/preferences": "^6.0.2",
     "capacitor-barcode-scanner": "^2.3.0",
     "firebase": "^10.14.1"
   }

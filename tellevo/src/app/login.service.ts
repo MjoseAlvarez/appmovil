@@ -14,7 +14,15 @@ export class LoginService {
   }
 
   // Método para registrar un nuevo usuario
-  async registro(email: string, password: string): Promise<void> {
+
+
+  async registro(email: string, password: string, password2: string): Promise<void> {
+    if (!password || !password2) {
+      throw new Error('Las contraseñas no pueden estar en blanco.');
+    }
+    if (password !== password2) {
+      throw new Error('Las contraseñas no coinciden.');
+    }
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
       this.userStatus.next(true);  // Actualiza el estado del usuario a "logeado"
@@ -52,8 +60,12 @@ export class LoginService {
   }
 
   // Método para obtener el usuario actual autenticado
-  getCurrentUser() {
-    return this.auth.currentUser;
+  getCurrentUser(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      onAuthStateChanged(this.auth, (user) => {
+        resolve(user);
+      }, reject);
+    });
   }
 
   // Método para cerrar sesión

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import { NavController, AlertController } from '@ionic/angular'; 
 
 @Component({
@@ -43,8 +44,8 @@ export class ModdatosPage implements OnInit {
   }
 
   
-  cerrarSesion() {
-    localStorage.removeItem('user');  // Eliminar los datos  usuario del localStorage
-    this.navController.navigateRoot('/login');  
+  async cerrarSesion() {
+    this.navController.navigateRoot('/home');  
+    await FirebaseAuthentication.signOut();
   }
 }

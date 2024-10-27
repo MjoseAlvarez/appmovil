@@ -1,46 +1,34 @@
-<!-- Encabezado de la página con una barra de herramientas -->
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <!-- Botón de retroceso con texto "Volver" que redirige a la página de inicio -->
     <ion-buttons slot="start">
       <ion-back-button text="Volver" defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <!-- Título de la página -->
     <ion-title>Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<!-- Contenido principal de la página -->
 <ion-content [fullscreen]="true" class="ion-padding background-image">
   <div id="container">
-    <!-- Imagen de avatar -->
     <div>
       <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Fondo" />
     </div>
-    <!-- Tarjeta de bienvenida -->
     <ion-card>
       <ion-card-header>
         <ion-card-title>Bienvenido a TeLlevoApp</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <!-- Botón para modificar datos del usuario -->
         <ion-button routerLink="/moddatos" expand="block" color="light">Modificar datos</ion-button>
-        <!-- Botón para resetear la contraseña -->
         <ion-button routerLink="/restkey" expand="block" color="light">Resetear contraseña</ion-button>
-        <!-- Botón para cerrar sesión -->
         <ion-button (click)="presentLogoutAlert()" expand="block" color="light">Cerrar sesión</ion-button>
       </ion-card-content>
     </ion-card>
   </div>
 </ion-content>
 
-<!-- Pie de página -->
 <ion-footer>
   <div>
     <ion-toolbar>
-      <!-- Mensaje de cierre -->
       <strong>Planifica, comparte y regresemos a casa juntos.</strong>
-      <!-- Enlace al sitio web -->
       <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
     </ion-toolbar>
   </div>
