@@ -1,64 +1,58 @@
-.background-image {
-  background: url('/assets/icon/imagen.jpeg') no-repeat center center fixed;
-  background-size: cover;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  animation: fadeIn 2s ease-in-out; /* Animación de desvanecimiento */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-#container {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
-  padding: 20px;
-  border-radius: 12px; /* Bordes redondeados */
-}
-
 /* Ajustes para el tema oscuro */
-.dark-theme #container {
-  background: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
-}
+.dark-theme {
+  color: #ffffff; /* Color de texto blanco */
+  
+  #container {
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    color: #ffffff; /* Color de texto blanco */
+  }
 
+  ion-button {
+    --background: #333333; /* Fondo gris oscuro */
+    --color: #ffffff; /* Texto blanco */
+    --border: 2px solid #ffffff; /* Borde blanco */
+  }
+
+  ion-card {
+    --background: #333333; /* Fondo gris oscuro */
+    --color: #ffffff; /* Texto blanco */
+  }
+
+  ion-card-header,
+  ion-card-content {
+    --background: #333333; /* Fondo gris oscuro */
+    --color: #ffffff; /* Texto blanco */
+  }
+
+  ion-toolbar {
+    --background: #222222; /* Fondo más oscuro para el toolbar */
+    --color: #ffffff; /* Texto blanco */
+  }
+}
+/* Estilos para el tema claro */
 ion-button {
   --background: #ffffff; /* Fondo blanco */
   --color: #000000; /* Texto negro */
-  --border-radius: 24px; /* Bordes redondeados */
-  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
   --border: 2px solid #041a31; /* Borde resaltado de color azul */
   margin-bottom: 15px; /* Espaciado entre botones */
 }
 
-/* Botón en tema oscuro */
+ion-button:hover {
+  --background: #f0f0f0; /* Fondo ligeramente más oscuro al pasar el ratón */
+}
+
+ion-button:focus {
+  outline: none; /* Eliminar el borde de enfoque predeterminado */
+  box-shadow: 0 0 0 3px rgba(4, 26, 49, 0.5); /* Añadir un borde de enfoque personalizado */
+}
+
+ion-button:active {
+  --background: #e0e0e0; /* Fondo más oscuro al hacer clic */
+}
+
+/* Estilos para el tema oscuro */
 .dark-theme ion-button {
-  --background: #333333; /* Fondo gris oscuro */
+  --background: #000000; /* Fondo negro */
   --color: #ffffff; /* Texto blanco */
   --border: 2px solid #ffffff; /* Borde blanco */
-}
-
-img {
-  border-radius: 50%; /* Imagen circular */
-  width: 200px;
-  height: auto;
-}
-
-/* Ajustes para el ion-card en tema oscuro */
-.dark-theme ion-card {
-  --background: #333333; /* Fondo gris oscuro */
-  --color: #ffffff; /* Texto blanco */
-}
-
-.dark-theme ion-card-header,
-.dark-theme ion-card-content {
-  --background: #333333; /* Fondo gris oscuro */
-  --color: #ffffff; /* Texto blanco */
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +8,15 @@ import { Component } from '@angular/core';
 export class HomePage {
   isDarkMode: boolean = false;
 
-  constructor() {}
+  constructor(private renderer: Renderer2) {}
 
   // Método para cambiar el tema de la aplicación
-  onThemeChange(event: any) {
+  onThemeChange(event: CustomEvent) {
     this.isDarkMode = event.detail.checked;
-    document.body.classList.toggle('dark', this.isDarkMode);
+    if (this.isDarkMode) {
+      this.renderer.addClass(document.body, 'dark-theme');
+    } else {
+      this.renderer.removeClass(document.body, 'dark-theme');
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from 'firebase/auth';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -14,15 +14,32 @@ export class LoginService {
   }
 
   // Método para registrar un nuevo usuario
-
-
-  async registro(email: string, password: string, password2: string): Promise<void> {
+  async registro(nombre: string, run: string, email: string, password: string, password2: string): Promise<void> {
+    // Validación del nombre
+    if (!nombre || nombre.trim().length === 0) {
+      throw new Error('El nombre no puede estar en blanco.');
+    }
+  
+    // Validación del RUT (ejemplo simple, puedes ajustar según tus necesidades)
+    const rutRegex = /^[0-9]+-[0-9kK]{1}$/;
+    if (!rutRegex.test(run)) {
+      throw new Error('El RUT es inválido.');
+    }
+  
+    // Validación del correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      throw new Error('El correo electrónico es inválido.');
+    }
+  
+    // Validación de las contraseñas
     if (!password || !password2) {
       throw new Error('Las contraseñas no pueden estar en blanco.');
     }
     if (password !== password2) {
       throw new Error('Las contraseñas no coinciden.');
     }
+  
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
       this.userStatus.next(true);  // Actualiza el estado del usuario a "logeado"
@@ -93,5 +110,16 @@ export class LoginService {
         this.userStatus.next(false);  // Si no, actualiza el estado a "no logeado"
       }
     });
+  }
+
+  // Método para enviar el correo de reinicio de contraseña
+  async resetPassword(email: string): Promise<void> {
+    try {
+      await sendPasswordResetEmail(this.auth, email);
+      console.log('Correo de reinicio de contraseña enviado');
+    } catch (error: any) {
+      console.error('Error al enviar el correo de reinicio de contraseña:', error);
+      throw new Error('No se pudo enviar el correo de reinicio de contraseña. Por favor, verifica el correo electrónico e inténtalo de nuevo.');
+    }
   }
 }

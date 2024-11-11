@@ -8,6 +8,8 @@ import { LoginService } from '../login.service';
   styleUrls: ['./newuser.page.scss'],
 })
 export class NewuserPage {
+  nombre: string = '';
+  run: string = '';tring = '';
   email: string = '';
   password: string = '';
   password2: string = '';
@@ -17,7 +19,7 @@ export class NewuserPage {
 
   async registro() {
     try {
-      await this.loginSrv.registro(this.email, this.password, this.password2);
+      await this.loginSrv.registro(this.nombre, this.run, this.email, this.password, this.password2);
       // Redirigir al menú después del registro exitoso
       this.router.navigate(['/menu']);  // Asegúrate de que la ruta 'menu' esté bien configurada
     } catch (error) {
