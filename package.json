@@ -2,6 +2,7 @@
   "dependencies": {
     "@angular/fire": "^18.0.1",
     "@capacitor-firebase/authentication": "^6.2.0",
+    "@capacitor/android": "^6.1.2",
     "@capacitor/cli": "^6.1.2",
     "@capacitor/core": "^6.1.2",
     "@capacitor/preferences": "^6.0.2",
