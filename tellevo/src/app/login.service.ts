@@ -19,19 +19,19 @@ export class LoginService {
     if (!nombre || nombre.trim().length === 0) {
       throw new Error('El nombre no puede estar en blanco.');
     }
-  
+
     // Validación del RUT (ejemplo simple, puedes ajustar según tus necesidades)
     const rutRegex = /^[0-9]+-[0-9kK]{1}$/;
     if (!rutRegex.test(run)) {
       throw new Error('El RUT es inválido.');
     }
-  
+
     // Validación del correo electrónico
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       throw new Error('El correo electrónico es inválido.');
     }
-  
+
     // Validación de las contraseñas
     if (!password || !password2) {
       throw new Error('Las contraseñas no pueden estar en blanco.');
@@ -39,7 +39,7 @@ export class LoginService {
     if (password !== password2) {
       throw new Error('Las contraseñas no coinciden.');
     }
-  
+
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
       this.userStatus.next(true);  // Actualiza el estado del usuario a "logeado"
@@ -80,6 +80,7 @@ export class LoginService {
   getCurrentUser(): Promise<any> {
     return new Promise((resolve, reject) => {
       onAuthStateChanged(this.auth, (user) => {
+        console.log('Estado de autenticación:', user);
         resolve(user);
       }, reject);
     });

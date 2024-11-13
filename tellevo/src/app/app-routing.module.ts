@@ -1,73 +1,73 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { logeadoGuard, visitaGuard } from './utils/guards';  // Importa los guards
+import { LogeadoGuard, VisitaGuard } from './utils/guards';  // Importa los guards
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
-    //canActivate: [logeadoGuard]  // Protege la ruta home para usuarios logueados
+    canActivate: [VisitaGuard]  // Protege la ruta home para usuarios logueados
   },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule),
-    //canActivate: [visitaGuard]  // Redirige a menu si ya está logueado
+    canActivate: [VisitaGuard]  // Redirige a menu si ya está logueado
   },
   {
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then(m => m.MenuPageModule),
-    canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
   },
   {
     path: 'menudriver',
     loadChildren: () => import('./menudriver/menudriver.module').then(m => m.MenudriverPageModule),
-    canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
   },
   {
     path: 'moddatos',
     loadChildren: () => import('./moddatos/moddatos.module').then(m => m.ModdatosPageModule),
-    canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
   },
   {
     path: 'modificaviaje',
     loadChildren: () => import('./modificaviaje/modificaviaje.module').then(m => m.ModificaviajePageModule),
-    canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
 
   },
   {
     path: 'newuser',
     loadChildren: () => import('./newuser/newuser.module').then(m => m.NewuserPageModule),
-    //canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
 
   },
   {
     path: 'programaviaje',
     loadChildren: () => import('./programaviaje/programaviaje.module').then(m => m.ProgramaviajePageModule),
-    canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
 
   },
   {
     path: 'restkey',
     loadChildren: () => import('./restkey/restkey.module').then(m => m.RestkeyPageModule),
-    //canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
 
   },
   {
     path: 'solicitudesviaje',
     loadChildren: () => import('./solicitudesviaje/solicitudesviaje.module').then(m => m.SolicitudesviajePageModule),
-    canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
 
   },
   {
     path: 'unirseviaje',
     loadChildren: () => import('./unirseviaje/unirseviaje.module').then(m => m.UnirseviajePageModule),
-    canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
 
   },
   {
     path: 'userlog',
     loadChildren: () => import('./userlog/userlog.module').then(m => m.UserlogPageModule),
-    canActivate: [logeadoGuard]  // Protege la ruta menu
+    canActivate: [LogeadoGuard]  // Protege la ruta menu
 
   },
   {

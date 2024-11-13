@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { LoginService } from '../login.service';  // Asegúrate de tener el servicio en la ruta correcta
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -70,5 +71,9 @@ export class LoginPage implements OnInit {
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+  goToResetPassword() {
+    this.nav.navigateForward('/restkey');
   }
 }

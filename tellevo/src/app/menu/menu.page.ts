@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -8,6 +9,9 @@ import { LoginService } from '../login.service';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  
+  nav = inject(NavController);
+
 
   constructor(private router: Router, private loginService: LoginService) { }
 
@@ -24,12 +28,12 @@ export class MenuPage implements OnInit {
   }
 
   // Método para redirigir a la página "home"
-  goToHome() {
+  async goToConductor() {
     this.router.navigate(['/menudriver']);
   }
 
   // Método para redirigir a la página "otraRuta" o cualquier otra
-  goToOtherPage() {
-    this.router.navigate(['/otraRuta']);
+  async goToPasajero() {
+    this.router.navigate(['/unirseviaje']);
   }
 }

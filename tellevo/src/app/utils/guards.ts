@@ -5,13 +5,13 @@ import { LoginService } from '../login.service';
 @Injectable({
   providedIn: 'root',
 })
-export class logeadoGuard implements CanActivate {
+export class LogeadoGuard implements CanActivate {
 
   constructor(private login: LoginService, private router: Router) {}
 
   async canActivate(): Promise<boolean> {
     const user = await this.login.getCurrentUser();
-    console.log('Usuario autenticado en logeadoGuard:', user);
+    console.log('Usuario autenticado en LogeadoGuard:', user);
     
     if (user) {
       return true;  // Permitir acceso si el usuario está autenticado
@@ -21,12 +21,10 @@ export class logeadoGuard implements CanActivate {
     }
   }
 }
-
-
 @Injectable({
   providedIn: 'root',
 })
-export class visitaGuard implements CanActivate {
+export class VisitaGuard implements CanActivate {
 
   constructor(private login: LoginService, private router: Router) {}
 
