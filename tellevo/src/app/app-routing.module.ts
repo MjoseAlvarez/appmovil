@@ -49,7 +49,7 @@ const routes: Routes = [
   {
     path: 'restkey',
     loadChildren: () => import('./restkey/restkey.module').then(m => m.RestkeyPageModule),
-    canActivate: [LogeadoGuard]  // Protege la ruta menu
+    //canActivate: [VisitaGuard]  // Protege la ruta menu
 
   },
   {
