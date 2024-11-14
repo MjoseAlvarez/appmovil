@@ -14,7 +14,13 @@
     </div>
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Bienvenido a TeLlevoApp</ion-card-title>
+        <ion-header [translucent]="true">
+          <ion-toolbar>
+            <ion-title>
+              Bienvenido, {{ userEmail }}
+            </ion-title>
+          </ion-toolbar>
+        </ion-header>
       </ion-card-header>
       <ion-card-content>
         <ion-button routerLink="/restkey" expand="block" color="light">Resetear contraseña</ion-button>
@@ -28,7 +34,8 @@
   <div>
     <ion-toolbar>
       <strong>Planifica, comparte y regresemos a casa juntos.</strong>
-      <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
+      <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a>
+      </p>
     </ion-toolbar>
   </div>
 </ion-footer>

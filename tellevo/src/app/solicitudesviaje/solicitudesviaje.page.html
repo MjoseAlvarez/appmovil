@@ -18,17 +18,24 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="content">
     <ion-card>
+      <!-- Mostrar mensaje si no hay solicitudes -->
+      <ion-item *ngIf="solicitudes.length === 0">
+        <ion-label>
+          <h2>No hay solicitudes de viaje en este momento.</h2>
+        </ion-label>
+      </ion-item>
       <!-- Aquí añadimos la lista de solicitudes de viaje -->
       <ion-list>
         <ion-item *ngFor="let solicitud of solicitudes">
           <!-- Avatar del usuario -->
           <ion-avatar slot="start">
-            <img src="{{solicitud.avatar}}" alt="Avatar del usuario"/>
+            <img src="../../assets/icon/avatar.png" alt="Avatar del usuario"/>
           </ion-avatar>
 
           <!-- Información del usuario que solicitó -->
           <ion-label>
-            <h2>{{solicitud.nombre}}</h2>
+            <h2>Pasajero: {{solicitud.email}}</h2>
+            <p>Estado: {{solicitud.estado}}</p>
           </ion-label>
 
           <!-- Botón de aceptar solicitud -->

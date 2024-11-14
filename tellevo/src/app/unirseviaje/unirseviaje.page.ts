@@ -1,50 +1,88 @@
-// Importa los módulos necesarios de Angular
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore'; // Importa AngularFirestore
+import { AngularFireAuth } from '@angular/fire/compat/auth'; // Importa AngularFireAuth
+import { AlertController, NavController } from '@ionic/angular'; // Importa AlertController y NavController
 
-// Define el componente con su selector, plantilla y estilos
 @Component({
-  selector: 'app-unirseviaje', // Selector del componente
-  templateUrl: './unirseviaje.page.html', // Ruta de la plantilla HTML
-  styleUrls: ['./unirseviaje.page.scss'], // Ruta de los estilos CSS
+  selector: 'app-unirseviaje',
+  templateUrl: './unirseviaje.page.html',
+  styleUrls: ['./unirseviaje.page.scss'],
 })
 export class UnirseviajePage implements OnInit {
-  // Define una propiedad para almacenar los viajes disponibles
   viajesDisponibles: any[] = [];
+  userEmail: string = ''; // Inicializar como cadena vacía
 
-  // Constructor que inyecta el servicio Router
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private firestore: AngularFirestore, // Inyecta AngularFirestore
+    private afAuth: AngularFireAuth, // Inyecta AngularFireAuth
+    private alertController: AlertController, // Inyecta AlertController
+    private navController: NavController // Inyecta NavController
+  ) {}
 
-  // Método que se ejecuta al inicializar el componente
   ngOnInit() {
-    // Obtiene el usuario del localStorage
-    const user = localStorage.getItem('user');
-    // Si no hay usuario, redirige al login
-    if (!user) {
-      this.router.navigate(['/login']); // Redirige al login si no está autenticado
-    } else {
-      this.cargarViajes(); // Carga los viajes disponibles si el usuario está autenticado
-    }
+    this.afAuth.authState.subscribe(user => {
+      if (user && user.email) {
+        this.userEmail = user.email; // Asigna el correo del usuario autenticado
+        this.cargarViajes();
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
-  // Método para cargar los viajes disponibles desde el localStorage
   cargarViajes() {
-    // Obtiene los viajes del localStorage
-    const viajes = localStorage.getItem('viajes');
-    // Si hay viajes, los parsea y los asigna a la propiedad viajesDisponibles, si no, asigna un array vacío
-    this.viajesDisponibles = viajes ? JSON.parse(viajes) : [];
+    this.firestore.collection('viajes').snapshotChanges().subscribe(viajesSnapshot => {
+      this.viajesDisponibles = viajesSnapshot.map(viaje => {
+        const data = viaje.payload.doc.data() as any; // Asegurarse de que data es de tipo any
+        const id = viaje.payload.doc.id;
+        return { id, ...data };
+      });
+    });
   }
 
-  // Método para unirse a un viaje
-  unirseAlViaje(viaje: any) {
-    // Verifica si la capacidad del viaje es un número y es mayor que 0
+  async unirseAlViaje(viaje: any) {
+    // Verificar si el usuario ya tiene una solicitud en curso
+    const solicitudEnCurso = this.viajesDisponibles.some(v => 
+      v.solicitudes && v.solicitudes.some((s: any) => s.email === this.userEmail && s.estado === 'pendiente')
+    );
+    if (solicitudEnCurso) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Ya tienes una solicitud en curso.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+
     if (typeof viaje.capacidad === 'number' && viaje.capacidad > 0) {
-      viaje.capacidad--; // Disminuye la capacidad del viaje
-      console.log('Te has unido al viaje:', viaje.destino); // Muestra un mensaje en la consola
-      // Actualiza los viajes en el localStorage
-      localStorage.setItem('viajes', JSON.stringify(this.viajesDisponibles));
+      viaje.capacidad--;
+
+      try {
+        // Añadir la solicitud con estado de pendiente
+        const nuevaSolicitud = { email: this.userEmail, estado: 'pendiente' };
+        const solicitudes = viaje.solicitudes ? [...viaje.solicitudes, nuevaSolicitud] : [nuevaSolicitud];
+        await this.firestore.collection('viajes').doc(viaje.id).update({ capacidad: viaje.capacidad, solicitudes });
+
+        const alert = await this.alertController.create({
+          message: 'Solicitud enviada con éxito.',
+          buttons: ['OK']
+        });
+
+        await alert.present();
+
+        alert.onDidDismiss().then(() => {
+          this.navController.navigateBack('/menu'); // Redirige a la página del menú
+        });
+
+        console.log('Te has unido al viaje:', viaje.destino);
+      } catch (error) {
+        console.error('Error al unirse al viaje: ', error);
+      }
     } else {
-      console.error('No hay espacio disponible en este viaje.'); // Muestra un error en la consola si no hay espacio
+      console.error('No hay espacio disponible en este viaje.');
     }
   }
 }

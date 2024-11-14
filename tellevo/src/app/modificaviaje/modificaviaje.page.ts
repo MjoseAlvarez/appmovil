@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';  
+import { NavController, AlertController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore'; // Importa AngularFirestore
 
 @Component({
   selector: 'app-modificarviaje',
@@ -7,26 +8,42 @@ import { NavController, AlertController } from '@ionic/angular';
   styleUrls: ['./modificaviaje.page.scss'],
 })
 export class ModificarViajePage implements OnInit {
-  // Objeto para almacenar los datos del viaje
   viaje: any = {
     destino: '',
     capacidad: null,
     costoPorPersona: null,
   };
+  viajeId: string = ''; // Inicializar como cadena vacía
 
-  // Inyección de dependencias NavController y AlertController
-  constructor(private navController: NavController, private alertController: AlertController) { }
+  constructor(
+    private navController: NavController,
+    private alertController: AlertController,
+    private firestore: AngularFirestore // Inyecta AngularFirestore
+  ) {}
 
   ngOnInit() {
-    // Cargar el viaje almacenado en localStorage cuando se inicie la página
-    const viajeGuardado = JSON.parse(localStorage.getItem('viaje') || '{}');
-    this.viaje = viajeGuardado;
+    this.firestore.collection('viajes', ref => ref.orderBy('timestamp', 'desc').limit(1))
+      .snapshotChanges()
+      .subscribe(async viajes => {
+        if (viajes.length > 0) {
+          const viajeData = viajes[0].payload.doc.data();
+          this.viaje = viajeData;
+          this.viajeId = viajes[0].payload.doc.id; // Guardar el ID del viaje
+        } else {
+          const alert = await this.alertController.create({
+            header: 'No hay viajes',
+            message: 'No se encontraron viajes creados.',
+            buttons: ['OK']
+          });
+          await alert.present();
+          //volver a menudriver
+          this.navController.navigateBack('/menudriver');
+        }
+      });
   }
 
   async modificarViaje() {
-    // Validaciones
     if (!this.viaje.destino || this.viaje.capacidad <= 0 || this.viaje.costoPorPersona <= 0) {
-      // Mostrar alerta de error si los datos no son válidos
       const alert = await this.alertController.create({
         header: 'Error',
         message: 'Por favor, ingrese datos válidos.',
@@ -36,20 +53,27 @@ export class ModificarViajePage implements OnInit {
       return;
     }
 
-    // Guarda los cambios en localStorage
-    localStorage.setItem('viaje', JSON.stringify(this.viaje));
+    try {
+      await this.firestore.collection('viajes').doc(this.viajeId).update(this.viaje);
 
-    // Mostrar alerta de éxito
-    const alert = await this.alertController.create({
-      message: 'El viaje ha sido modificado con éxito.',
-      buttons: ['OK']
-    });
+      const alert = await this.alertController.create({
+        message: 'El viaje ha sido modificado con éxito.',
+        buttons: ['OK']
+      });
 
-    await alert.present();
+      await alert.present();
 
-    // Regresar a la página de inicio después de cerrar la alerta
-    alert.onDidDismiss().then(() => {
-      this.navController.navigateBack('/menudriver');
-    });
+      alert.onDidDismiss().then(() => {
+        this.navController.navigateBack('/menudriver');
+      });
+    } catch (error) {
+      console.error('Error al modificar el viaje: ', error);
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Hubo un problema al modificar el viaje. Por favor, inténtalo de nuevo.',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
   }
 }

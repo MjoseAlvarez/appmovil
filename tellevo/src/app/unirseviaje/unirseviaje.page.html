@@ -17,11 +17,25 @@
 
 <ion-content class="ion-padding">
   <ion-list>
+    <!-- Mostrar mensaje si no hay viajes disponibles -->
+    <ion-item *ngIf="viajesDisponibles.length === 0">
+      <ion-label>
+        <h2>No hay viajes disponibles en este momento.</h2>
+      </ion-label>
+    </ion-item>
     <!-- Lista de viajes disponibles -->
     <ion-item *ngFor="let viaje of viajesDisponibles">
       <ion-label>
-        <h2>{{ viaje.destino }}</h2>
+        <h2>Conductor: {{ viaje.creador }}</h2>
+        <h2>Destino: {{ viaje.destino }}</h2>
         <p>Capacidad: {{ viaje.capacidad }} - Costo: {{ viaje.costoPorPersona | currency }}</p>
+        <!-- Mostrar el estado de la solicitud del usuario -->
+        <p *ngIf="viaje.solicitudes">
+          Estado de la solicitud: 
+          <span *ngFor="let solicitud of viaje.solicitudes">
+            <span *ngIf="solicitud.email === userEmail">{{ solicitud.estado }}</span>
+          </span>
+        </p>
       </ion-label>
       <!-- Botón para unirse al viaje, deshabilitado si no hay capacidad -->
       <ion-button fill="outline" (click)="unirseAlViaje(viaje)" [disabled]="viaje.capacidad <= 0">

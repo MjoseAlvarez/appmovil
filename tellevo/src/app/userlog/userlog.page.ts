@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth'; // Importa AngularFireAuth
 import { LoginService } from '../login.service';
 
 @Component({
@@ -9,10 +10,22 @@ import { LoginService } from '../login.service';
   styleUrls: ['./userlog.page.scss'],
 })
 export class UserlogPage implements OnInit {
+  userEmail: string = ''; // Inicializar como cadena vacía
 
-  constructor(private alertController: AlertController, private router: Router, private loginService: LoginService) { }
+  constructor(
+    private alertController: AlertController,
+    private router: Router,
+    private loginService: LoginService,
+    private afAuth: AngularFireAuth // Inyecta AngularFireAuth
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.afAuth.authState.subscribe(user => {
+      if (user && user.email) {
+        this.userEmail = user.email; // Asigna el correo del usuario autenticado
+      }
+    });
+  }
 
   async presentLogoutAlert() {
     const alert = await this.alertController.create({
