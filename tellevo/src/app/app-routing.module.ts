@@ -37,7 +37,7 @@ const routes: Routes = [
   {
     path: 'newuser',
     loadChildren: () => import('./newuser/newuser.module').then(m => m.NewuserPageModule),
-    canActivate: [LogeadoGuard]  // Protege la ruta menu
+    canActivate: [VisitaGuard]  // Protege la ruta menu
 
   },
   {

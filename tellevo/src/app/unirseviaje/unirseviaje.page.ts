@@ -19,7 +19,7 @@ export class UnirseviajePage implements OnInit {
     private afAuth: AngularFireAuth, // Inyecta AngularFireAuth
     private alertController: AlertController, // Inyecta AlertController
     private navController: NavController // Inyecta NavController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(user => {
@@ -44,7 +44,7 @@ export class UnirseviajePage implements OnInit {
 
   async unirseAlViaje(viaje: any) {
     // Verificar si el usuario ya tiene una solicitud en curso
-    const solicitudEnCurso = this.viajesDisponibles.some(v => 
+    const solicitudEnCurso = this.viajesDisponibles.some(v =>
       v.solicitudes && v.solicitudes.some((s: any) => s.email === this.userEmail && s.estado === 'pendiente')
     );
     if (solicitudEnCurso) {

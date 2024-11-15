@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { NewUser } from '../_models/viaje';
 
 @Component({
   selector: 'app-newuser',
@@ -8,22 +9,24 @@ import { LoginService } from '../login.service';
   styleUrls: ['./newuser.page.scss'],
 })
 export class NewuserPage {
-  nombre: string = '';
-  run: string = '';tring = '';
-  email: string = '';
-  password: string = '';
-  password2: string = '';
-  sedeError: string = '';
+  
+  newUser: NewUser = {} as NewUser;
 
-  constructor(private loginSrv: LoginService, private router: Router) {}  // Inyecta Router
+  constructor(private loginSrv: LoginService, private router: Router) {}
 
   async registro() {
     try {
-      await this.loginSrv.registro(this.nombre, this.run, this.email, this.password, this.password2);
+      await this.loginSrv.registro(
+        this.newUser.nombre,
+        this.newUser.run,
+        this.newUser.email,
+        this.newUser.password,
+        this.newUser.password2
+      );
       // Redirigir al menú después del registro exitoso
-      this.router.navigate(['/menu']);  // Asegúrate de que la ruta 'menu' esté bien configurada
+      this.router.navigate(['/menu']);
     } catch (error) {
-      this.sedeError = 'Error en el registro: ' + (error as Error).message;
+      this.newUser.sedeError = 'Error en el registro: ' + (error as Error).message;
     }
   }
 }
