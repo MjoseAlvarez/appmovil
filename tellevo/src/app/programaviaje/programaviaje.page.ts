@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/compat/firestore'; // Usa compat
 import { AngularFireAuth } from '@angular/fire/compat/auth'; // Importa AngularFireAuth
+import { Viaje } from '../_models/viaje'; //
 
 @Component({
   selector: 'app-programaviaje',
@@ -10,10 +11,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth'; // Importa AngularF
   styleUrls: ['./programaviaje.page.scss'],
 })
 export class ProgramaviajePage implements OnInit {
-  destino: string = '';
-  capacidad: number = 0;
-  costoPorPersona: number = 0;
-  userEmail: string = ''; // Inicializar como cadena vacía
+
+  viaje: Viaje = {} as Viaje; //
 
   constructor(
     private router: Router,
@@ -26,7 +25,7 @@ export class ProgramaviajePage implements OnInit {
   ngOnInit() {
     this.afAuth.authState.subscribe(user => {
       if (user && user.email) {
-        this.userEmail = user.email; // Asigna el correo del usuario autenticado
+        this.viaje.userEmail = user.email; // Asigna el correo del usuario autenticado
       } else {
         this.router.navigate(['/login']); // Redirige al login si no está autenticado
       }
@@ -48,7 +47,7 @@ export class ProgramaviajePage implements OnInit {
       destino: this.destino,
       capacidad: this.capacidad,
       costoPorPersona: this.costoPorPersona,
-      timestamp: new Date(), // Añadir marca de tiempo
+      fechaCreacion: this.fechaCreacion, // Añadir marca de tiempo
       creador: this.userEmail // Añadir el correo del creador del viaje
     };
   
