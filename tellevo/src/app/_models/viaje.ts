@@ -1,11 +1,4 @@
-export interface NewUser {
-    nombre: string;
-    run: string;
-    email: string;
-    password: string;
-    password2: string;
-    sedeError?: string;
-  }
+
   
 export interface Usuario{
     nombre: string;

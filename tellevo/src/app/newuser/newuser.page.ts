@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
-import { NewUser } from '../_models/viaje';
+import { NewUser } from '../_models/new-user';
 
 @Component({
   selector: 'app-newuser',
