@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
@@ -9,74 +9,82 @@ import { LoginService } from '../login.service';
   styleUrls: ['./restkey.page.scss'],
 })
 export class RestkeyPage implements OnInit {
-  run: string = '';
-  email: string = '';
-  sedeError: string = '';
+  run: string = ''; // RUN del usuario
+  email: string = ''; // Correo del usuario
+  sedeError: string = ''; // Mensaje de error
 
   constructor(
-    private alertController: AlertController, // Inyecta AlertController para mostrar alertas
-    private router: Router, // Inyecta Router para la navegación
-    private loginSrv: LoginService // Inyecta LoginService para el envío de correos electrónicos
+    private alertController: AlertController, // Para mostrar alertas
+    private router: Router, // Para la navegación
+    private loginSrv: LoginService // Para manejar lógica de autenticación
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  // Método para mostrar una alerta cuando se envía el correo electrónico
-  async presentEmailSentAlert() {
+  // Muestra una alerta cuando se envía el correo electrónico
+  async presentEmailSentAlert(): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Correo enviado',
       message: 'Se ha enviado un correo electrónico con los pasos a seguir para recuperar su contraseña.',
-      buttons: [{
-        text: 'OK',
-        handler: () => {
-          this.router.navigate(['/home']); // Navega a la página de inicio
-        }
-      }]
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.router.navigate(['/home']); // Navegar al inicio
+          },
+        },
+      ],
     });
-
     await alert.present();
   }
 
-  // Método para mostrar una alerta cuando el formulario es inválido
-  async presentInvalidFormAlert() {
+  // Muestra una alerta si el formulario es inválido
+  async presentInvalidFormAlert(): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Formulario inválido',
       message: 'Por favor, completa todos los campos correctamente.',
-      buttons: ['OK']
+      buttons: ['OK'],
     });
-
     await alert.present();
   }
 
-  // Método que se ejecuta al enviar el formulario
-  async onSubmit() {
-      try {
-        await this.loginSrv.resetPassword(this.email);
-        // Redirigir al menú después del registro exitoso
-        this.router.navigate(['/menu']);  // Asegúrate de que la ruta 'menu' esté bien configurada
-      } catch (error) {
-        this.sedeError = 'Error en el reseteo: ' + (error as Error).message;
-      }
-    
-
-    if (this.run && this.email && this.validateRun(this.run) && this.validateEmail(this.email)) {
-      // Aquí puedes añadir la lógica para enviar el correo electrónico
-      this.presentEmailSentAlert();
-    } else {
+  // Enviar formulario
+  async onSubmit(): Promise<void> {
+    // Validar RUN y correo
+    if (!this.validateRun(this.run) || !this.validateEmail(this.email)) {
       this.presentInvalidFormAlert();
+      return;
+    }
+
+    try {
+      // Intentar resetear la contraseña usando el servicio
+      await this.loginSrv.resetPassword(this.email);
+      this.presentEmailSentAlert(); // Mostrar alerta de éxito
+    } catch (error) {
+      this.sedeError = `Error en el reseteo: ${(error as Error).message}`;
+      this.presentErrorAlert(this.sedeError); // Mostrar alerta de error
     }
   }
 
-  // Método para validar el RUN
+  // Validar formato de RUN
   validateRun(run: string): boolean {
-    const runPattern = /^\d{7,8}-[0-9kK]$/;
+    const runPattern = /^\d{7,8}-[0-9kK]$/; // Formato válido de RUN
     return runPattern.test(run);
   }
 
-  // Método para validar el correo electrónico
+  // Validar formato de correo electrónico
   validateEmail(email: string): boolean {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(email);
   }
-  
+
+  // Mostrar alerta de error
+  async presentErrorAlert(message: string): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
 }

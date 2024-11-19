@@ -7,5 +7,5 @@ export const environment = {
     storageBucket: "appmovil-f83ba.appspot.com",
     messagingSenderId: "945121709256",
     appId: "1:945121709256:web:0e1857a2aba93e6bfb69fd"
-  }
+  },
 };

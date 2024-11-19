@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModdatosPage } from './moddatos.page';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
 
 describe('ModdatosPage', () => {
   let component: ModdatosPage;
@@ -7,6 +9,10 @@ describe('ModdatosPage', () => {
 
   // Configuración inicial antes de cada prueba
   beforeEach(() => {
+    imports:[
+      AngularFireModule.initializeApp(environment.firebaseConfig), // Inicializar Firebase
+
+    ]
     // Crea una instancia del componente ModdatosPage
     fixture = TestBed.createComponent(ModdatosPage);
     // Asigna la instancia del componente a la variable component
