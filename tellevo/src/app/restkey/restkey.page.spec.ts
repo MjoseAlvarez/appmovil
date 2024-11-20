@@ -77,7 +77,7 @@ describe('RestkeyPage', () => {
     });
 
     // Verificar que se navegó a '/home'
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/home']);
+    expect(routerMock.navigate).toHaveBeenCalledWith('/home');
   });
 
   it('should show error alert on invalid form', async () => {

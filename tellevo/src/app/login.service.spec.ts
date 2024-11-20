@@ -8,6 +8,9 @@ describe('LoginService', () => {
   let authMock: any;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({imports: [
+      AngularFireModule.initializeApp(environment.firebaseConfig), // Inicializar Firebase
+    ]})
     // Crear un mock manual del objeto auth de Firebase
     authMock = {
       sendPasswordResetEmail: jasmine.createSpy('sendPasswordResetEmail').and.returnValue(Promise.resolve()),
