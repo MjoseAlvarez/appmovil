@@ -59,7 +59,7 @@ export class LoginService {
         if (user) {
           resolve(user);
         } else {
-          reject('No hay usuario autenticado.');
+          resolve(null);
         }
       });
     });

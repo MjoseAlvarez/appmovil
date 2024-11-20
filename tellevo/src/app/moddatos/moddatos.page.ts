@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 import { NavController, AlertController } from '@ionic/angular'; 
 
 @Component({
@@ -46,6 +45,5 @@ export class ModdatosPage implements OnInit {
   
   async cerrarSesion() {
     this.navController.navigateRoot('/home');  
-    await FirebaseAuthentication.signOut();
   }
 }
