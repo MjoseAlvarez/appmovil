@@ -33,7 +33,7 @@ export class ModificarViajePage implements OnInit {
   // Método para cargar el último viaje desde Firestore
   cargarUltimoViaje() {
     this.firestore
-      .collection('viajes', (ref) => ref.orderBy('timestamp', 'desc').limit(1))
+      .collection('viajes', (ref) => ref.orderBy('fechaCreacion', 'desc').limit(1))
       .snapshotChanges()
       .subscribe(async (viajes) => {
         if (viajes.length > 0) {

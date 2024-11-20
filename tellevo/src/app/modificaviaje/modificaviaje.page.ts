@@ -8,41 +8,47 @@ import { AngularFirestore } from '@angular/fire/compat/firestore'; // Importa An
   styleUrls: ['./modificaviaje.page.scss'],
 })
 export class ModificarViajePage implements OnInit {
+  // Objeto para almacenar los datos del viaje
   viaje: any = {
     destino: '',
     capacidad: null,
     costoPorPersona: null,
   };
-  viajeId: string = ''; // Inicializar como cadena vacía
+  // ID del viaje, inicializado como cadena vacía
+  viajeId: string = '';
 
   constructor(
-    private navController: NavController,
-    private alertController: AlertController,
+    private navController: NavController, // Controlador de navegación
+    private alertController: AlertController, // Controlador de alertas
     private firestore: AngularFirestore // Inyecta AngularFirestore
   ) {}
 
   ngOnInit() {
-    this.firestore.collection('viajes', ref => ref.orderBy('timestamp', 'desc').limit(1))
+    // Consulta a Firestore para obtener el último viaje ordenado por fechaCreacion
+    this.firestore.collection('viajes', ref => ref.orderBy('fechaCreacion', 'desc').limit(1))
       .snapshotChanges()
       .subscribe(async viajes => {
         if (viajes.length > 0) {
+          // Si hay viajes, obtener los datos del primer documento
           const viajeData = viajes[0].payload.doc.data();
           this.viaje = viajeData;
           this.viajeId = viajes[0].payload.doc.id; // Guardar el ID del viaje
         } else {
+          // Si no hay viajes, mostrar una alerta
           const alert = await this.alertController.create({
             header: 'No hay viajes',
             message: 'No se encontraron viajes creados.',
             buttons: ['OK']
           });
           await alert.present();
-          //volver a menudriver
+          // Volver al menú del conductor
           this.navController.navigateBack('/menudriver');
         }
       });
   }
 
   async modificarViaje() {
+    // Validar que los datos del viaje sean válidos
     if (!this.viaje.destino || this.viaje.capacidad <= 0 || this.viaje.costoPorPersona <= 0) {
       const alert = await this.alertController.create({
         header: 'Error',
@@ -54,8 +60,10 @@ export class ModificarViajePage implements OnInit {
     }
 
     try {
+      // Intentar actualizar el viaje en Firestore
       await this.firestore.collection('viajes').doc(this.viajeId).update(this.viaje);
 
+      // Mostrar una alerta de éxito
       const alert = await this.alertController.create({
         message: 'El viaje ha sido modificado con éxito.',
         buttons: ['OK']
@@ -63,10 +71,12 @@ export class ModificarViajePage implements OnInit {
 
       await alert.present();
 
+      // Navegar de vuelta al menú del conductor después de cerrar la alerta
       alert.onDidDismiss().then(() => {
         this.navController.navigateBack('/menudriver');
       });
     } catch (error) {
+      // Manejar errores y mostrar una alerta de error
       console.error('Error al modificar el viaje: ', error);
       const alert = await this.alertController.create({
         header: 'Error',
