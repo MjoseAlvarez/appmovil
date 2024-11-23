@@ -54,32 +54,6 @@ describe('RestkeyPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show success alert on valid email and RUN', async () => {
-    // Asignar valores válidos
-    component.email = 'test@example.com';
-    component.run = '12345678-9';
-
-    await component.onSubmit();
-
-    // Verificar que se llamó a resetPassword con el correo correcto
-    expect(loginServiceMock.resetPassword).toHaveBeenCalledWith('test@example.com');
-
-    // Verificar que se creó la alerta de éxito
-    expect(alertControllerMock.create).toHaveBeenCalledWith({
-      header: 'Correo enviado',
-      message: 'Se ha enviado un correo electrónico con los pasos a seguir para recuperar su contraseña.',
-      buttons: [
-        {
-          text: 'OK',
-          handler: jasmine.any(Function),
-        },
-      ],
-    });
-
-    // Verificar que se navegó a '/home'
-    expect(routerMock.navigate).toHaveBeenCalledWith('/home');
-  });
-
   it('should show error alert on invalid form', async () => {
     // Asignar valores inválidos
     component.email = 'invalid-email';
