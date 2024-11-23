@@ -29,24 +29,23 @@
         <ion-item *ngFor="let solicitud of solicitudes">
           <!-- Avatar del usuario -->
           <ion-avatar slot="start">
-            <img src="../../assets/icon/avatar.png" alt="Avatar del usuario"/>
+            <img src="../../assets/icon/avatar.png" alt="Avatar del usuario" />
           </ion-avatar>
 
           <!-- Información del usuario que solicitó -->
           <ion-label>
             <h2>Pasajero: {{solicitud.email}}</h2>
             <p>Estado: {{solicitud.estado}}</p>
+            <!-- Botón de aceptar solicitud -->
+            <ion-button color="success" (click)="aceptarSolicitud(solicitud)">
+              <ion-icon name="checkmark-circle"></ion-icon>
+            </ion-button>
+            <!-- Botón de rechazar solicitud -->
+
+            <ion-button color="danger" (click)="rechazarSolicitud(solicitud)">
+              <ion-icon name="close-circle"></ion-icon>
+            </ion-button>
           </ion-label>
-
-          <!-- Botón de aceptar solicitud -->
-          <ion-button color="success" (click)="aceptarSolicitud(solicitud)">
-            <ion-icon name="checkmark-circle"></ion-icon>
-          </ion-button>
-
-          <!-- Botón de rechazar solicitud -->
-          <ion-button color="danger" (click)="rechazarSolicitud(solicitud)">
-            <ion-icon name="close-circle"></ion-icon>
-          </ion-button>
         </ion-item>
       </ion-list>
     </ion-card>
@@ -58,6 +57,7 @@
     <!-- Mensaje de pie de página -->
     <strong>Planifica, comparte y regresemos a casa juntos.</strong>
     <!-- Enlace al sitio web -->
-    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a></p>
+    <p>Visítanos <a target="_blank" rel="noopener noreferrer" href="http://www.tellevoapp.com">www.tellevoapp.com</a>
+    </p>
   </ion-toolbar>
 </ion-footer>
